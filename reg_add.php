@@ -8,6 +8,7 @@ if( isset($_POST['reg_submit']) ){
 	/** set variables from post **/
 	$userid = trim($_POST['userid']);
 	$password = trim($_POST['password']);
+	$password1 = trim($_POST['password1']);
 	$role = trim($_POST['role']);
 	$name = trim($_POST['name']);
 	$matchuser = trim($_POST['matchuser']);
@@ -31,6 +32,8 @@ if( isset($_POST['reg_submit']) ){
 		$error .= "密碼不能留空<br/>";
 	}elseif(strlen($password) <8){
 		$error .= "密碼長度至少為8<br/>";	
+	}elseif($password != $password1){
+		$error .= "兩次密碼不一樣<br/>";	
 	}
 
 
@@ -101,6 +104,10 @@ if( isset($_POST['reg_submit']) ){
 		<div class="form_row">
 			<label for="password">密碼：</label>
 			<input type="password" id="password" name="password" value="<?php P('password'); ?>"/>
+		</div>
+        <div class="form_row">
+			<label for="password1">確認密碼：</label>
+			<input type="password" id="password1" name="password1" value="<?php P('password1'); ?>"/>
 		</div>
 		<div class="form_row">
 			<label for="email">名字：</label>
