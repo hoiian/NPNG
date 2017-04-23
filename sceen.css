@@ -111,7 +111,7 @@ form{
 
 .news_listpage ul li a:hover img {
 	border:#000 solid 2px;
-}*/
+}
 
 
 .news_listpage ul li a span.title {
@@ -121,12 +121,12 @@ form{
 	display:block;
 	margin-bottom:5px;
 	position:absolute;
-/*	left:230px;*/
+	left:230px;
 }
 
 .news_listpage ul li a span.summary{
 	position:absolute;
-/*	left:230px;*/
+	left:230px;
 	top:35px;
 	margin:10px 10px 0px 0px;
 }
@@ -135,7 +135,7 @@ form{
 	color:#C00;
 	text-decoration:underline;
 }
-
+*/
 .news_listpage ul li a:hover {
 	background:#FFFFCC;
 	border-top:#000 1px solid;

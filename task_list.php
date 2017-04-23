@@ -44,9 +44,21 @@ if ($sum % 3 > 0 ) { $sum = floor($sum / 3) + 1; } else { $sum = floor($sum / 3)
          	<a href="#" class="n">
       
         		<span class="title"><?php echo $row['title'] ?></span><br/>
-       			<span class="summary"><?php echo $row['post'] ?></span> 
+       			<span class="summary"><?php echo $row['post'] ?></span> <br/>
                 <span class="start"><?php echo $row['created_at'] ?></span>
                 <span class="deadline">到<?php echo $row['deadline'] ?></span><br/>
+                <span>
+				<?php 	
+						$remain = (strtotime($row['deadline'])-strtotime(date("Y-m-d")))/86400;
+                		if($remain <0 ){
+							echo "已經過了".-$remain."天";
+						}elseif($remain == 0){
+							echo "今天到期!";
+						}else echo "還剩下".$remain."天";
+				?>
+                </span><br/>
+                <span>獎勵:<?php echo $row['money'];?>元</span>
+                
             
                             
                 <?php if( has_role('parent') ): ?>

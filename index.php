@@ -1,6 +1,7 @@
 <html>
 <?php 
 require_once ("func.php");
+
 ?>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -37,6 +38,7 @@ if( isset($_POST['login_submit']) ){
     $_SESSION['userid'] = $user['userid'];
     $_SESSION['name'] = $user['name'];
     $_SESSION['matchuser'] = $user['matchuser'];
+	$_SESSION['id'] = $user['id'];
     $pass="成功登入，歡迎！";
   }
 }
@@ -75,8 +77,8 @@ Hello,
 		echo "爸爸/媽媽<br/>";
 	}
 ?>
-
-	<a href="logout.php" class="button" align="center">logout</a>
+	<a href="reg_edit.php?id=<?php echo $_SESSION['id'];?>" class="button" align="center">編輯</a>
+	<a href="logout.php" class="button" align="center">登出</a>
 </div>
      <?php if( has_role('child') ): ?>
     <!--   <a href="student_add.php?>" class="ed" >[任務]</a>-->
