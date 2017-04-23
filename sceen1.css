@@ -5,32 +5,25 @@
 body {
 	margin:0px;
 	padding:0px;
-    text-align: center;
 }
+
 .login {
-	background:url(img/signup_bg.png);
-    background-size:cover;
+	background:#3DB2D7;
 	margin:0 auto;
 	height:960px;
 	width:540px;
 	padding:50px 20px 0px 20px;
 }
-.logo{
-    border-radius:50%;
-    height:180px;
-    width:180px;
-    border:2px #ffffff solid;
-    margin:30px auto;
-}
-img[name$="invalid_name"]{
-    width: 300px;
-    height: auto;
-    margin:20px auto;
-}
 form{
 	margin:0 auto;
+	color:#594A42;
+	font-weight:bold;
 }
 
+.login input{
+	background:#ACDCEB;
+
+}
 .log_in{
 	color:#000;
 	font-weight:bold;
@@ -49,28 +42,22 @@ form{
 	padding:10px;
 }
 
-.form_group input,.button,input[name$="login_submit"]{
-	text-align: center;
-    background-color:#37bde5; 
-	width:450px;
-    height:90px;
+.button{
+	float:right;
+	width:80px;
+	background:#594A42;
 	color:#FFF;
-	font-size:24px;
-	border-radius:100px;
-	border:4px #FFF solid;
-    margin:5px;   
+	font-size:14px;
+	border-radius:12px;
+	border:none;
 }
-input[name$="userid"],input[name$="password"]{
-    color:#37bde5;
-    text-align: left;
-    padding-left:30px;
-    background-color:#AFE4F4; 
-}
+
 .error {
 	color:#CC3300;
 	font-size:12px;
 	background:#FFCCCC;
 	padding:5px;
+
 	border:#FF99CC solid 1px;
 }
 

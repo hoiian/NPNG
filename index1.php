@@ -1,5 +1,5 @@
 <html>
-<?php
+<?php 
 require_once ("func.php");
 
 ?>
@@ -16,9 +16,6 @@ require_once ("func.php");
 
 <body>
 <div class="login">
-    <div class="logo"><img name="logo"></div>
-    <img name="invalid_name" src="img/invalid_name.png">
-     
 <?php
 
 $error = "";
@@ -27,7 +24,7 @@ if( isset($_POST['login_submit']) ){
   /** set variables from post **/
   $userid = trim($_POST['userid']);
   $password = trim($_POST['password']);
-
+ 
   /* validation */
   if( $userid =="" ){
     $error .= "使用者名稱不能留空<br/>";
@@ -35,7 +32,7 @@ if( isset($_POST['login_submit']) ){
   if( $password =="" ){
     $error .= "密碼不能留空<br/>";
   }
-
+ 
   $user = db_get_user($userid,$password);
   if( !$user ){
     $error .= "抱歉，使用者或密碼錯誤<br/>";
@@ -52,7 +49,7 @@ if( isset($_POST['login_submit']) ){
   }
 }
 ?>
-
+ 
 <?php if( !has_session() ): ?>
     <?php if(!$pass){ ?>
     <?php if($error){ ?>
@@ -60,30 +57,30 @@ if( isset($_POST['login_submit']) ){
       <?php } ?>
     <form action="index.php" method="post">
       <div class="form_group">
-        
-        <input type="text" class="text" id="userid" name="userid" value="<?php P('userid');?>" placeholder="帳號(電話號碼)"/>
+        <label for="userid">帳號：(手機號碼)</label><br/>
+        <input type="text" class="text" id="userid" name="userid" value="<?php P('userid'); ?>"/>
       </div>
       <div class="form_group">
-      
-        <input type="password" class="text" id="password" name="password" value="<?php P('password'); ?>"  placeholder="密碼"/>
+        <label for="password">密碼：</label><br/>
+        <input type="password" class="text" id="password" name="password" value="<?php P('password'); ?>"/>
       </div>
-
-      <input type="submit" class="btn btn-primary" name="login_submit" value="登入"/>
-
-      <a href="reg_add.php"><input type="button"  class="button" value="註冊" ></a>
+       
+      <input type="submit" class="button" name="login_submit" value="Submit"/>
+    
+      <a href="reg_add.php"><input class="button" value="註冊"></a>
       </form>
       <?php } ?>
       <?php else: ?>
         <?php if($pass){ ?><div class="pass"> <?php echo $pass;?> </div><?php } ?>
-
+ 
   <div class="profile">
-	<img src="<?php echo $_SESSION['profilepic'];?>" width="150" height="150" alt="profilepic">
+	<img src="<?php echo $_SESSION['profilepic'];?>" width="80" height="80" alt="profilepic">
 Hello,
 <?php echo $_SESSION['name'];
-	if( $_SESSION['role'] == child){
+	if( $_SESSION['role'] == "child"){
 		echo "小朋友<br/>";
 	}
-	if( $_SESSION['role'] == parent){
+	if( $_SESSION['role'] == "parent"){
 		echo "爸爸/媽媽<br/>";
 	}
 ?>
@@ -93,13 +90,12 @@ Hello,
      <?php if( has_role('child') ): ?>
     <!--   <a href="student_add.php?>" class="ed" >[任務]</a>-->
     <?php endif; ?>
-
+    
     <div class="task">
 	<?php include("task_list.php"); ?>
     </div>
-
-
+ 
+  
 <?php endif ;?>
-    </div>
 </body>
 </html>
