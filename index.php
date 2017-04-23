@@ -65,7 +65,7 @@ if( isset($_POST['login_submit']) ){
         <input type="password" class="text" id="password" name="password" value="<?php P('password'); ?>"/>
       </div>
 
-      <input type="submit" class="button" name="login_submit" value="Submit"/>
+      <input type="submit" class="btn btn-primary" name="login_submit" value="Submit"/>
 
       <a href="reg_add.php"><input class="button" value="註冊"></a>
       </form>
