@@ -48,7 +48,7 @@ if( isset($_POST['reg_submit']) ){
 	}
 	
 		if( empty($_FILES['file']['name']) ){
-		$target_path = "Profilepic/default_icon.png";
+		$profilepic = "Profilepic/default_icon.png";
 	}else{
 		/* insert into db if no error */
 		$target_path = "Profilepic/";
