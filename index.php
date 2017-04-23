@@ -1,11 +1,16 @@
 <html>
-<?php 
+<?php
 require_once ("func.php");
 
 ?>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="sceen.css" rel="stylesheet" type="text/css" />
+<link href="bootstrap.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="cover.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NPNG</title>
 </head>
 
@@ -19,7 +24,7 @@ if( isset($_POST['login_submit']) ){
   /** set variables from post **/
   $userid = trim($_POST['userid']);
   $password = trim($_POST['password']);
- 
+
   /* validation */
   if( $userid =="" ){
     $error .= "使用者名稱不能留空<br/>";
@@ -27,7 +32,7 @@ if( isset($_POST['login_submit']) ){
   if( $password =="" ){
     $error .= "密碼不能留空<br/>";
   }
- 
+
   $user = db_get_user($userid,$password);
   if( !$user ){
     $error .= "抱歉，使用者或密碼錯誤<br/>";
@@ -44,30 +49,30 @@ if( isset($_POST['login_submit']) ){
   }
 }
 ?>
- 
+
 <?php if( !has_session() ): ?>
     <?php if(!$pass){ ?>
     <?php if($error){ ?>
         <div class="error"><?php echo $error ?></div>
       <?php } ?>
     <form action="index.php" method="post">
-      <div class="form_row">
+      <div class="form_group">
         <label for="userid">帳號：(手機號碼)</label><br/>
         <input type="text" class="text" id="userid" name="userid" value="<?php P('userid'); ?>"/>
       </div>
-      <div class="form_row">
+      <div class="form_group">
         <label for="password">密碼：</label><br/>
         <input type="password" class="text" id="password" name="password" value="<?php P('password'); ?>"/>
       </div>
-       
+
       <input type="submit" class="button" name="login_submit" value="Submit"/>
-    
+
       <a href="reg_add.php"><input class="button" value="註冊"></a>
       </form>
       <?php } ?>
       <?php else: ?>
         <?php if($pass){ ?><div class="pass"> <?php echo $pass;?> </div><?php } ?>
- 
+
   <div class="profile">
 	<img src="<?php echo $_SESSION['profilepic'];?>" width="150" height="150" alt="profilepic">
 Hello,
@@ -85,12 +90,12 @@ Hello,
      <?php if( has_role('child') ): ?>
     <!--   <a href="student_add.php?>" class="ed" >[任務]</a>-->
     <?php endif; ?>
-    
+
     <div class="task">
 	<?php include("task_list.php"); ?>
     </div>
- 
-  
+
+
 <?php endif ;?>
 </body>
 </html>
