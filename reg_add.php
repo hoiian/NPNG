@@ -12,14 +12,14 @@ if( isset($_POST['reg_submit']) ){
 	$role = trim($_POST['role']);
 	$name = trim($_POST['name']);
 	$matchuser = trim($_POST['matchuser']);
-
+	
 	/* validation */
 	if( $userid =="" ){
 		$error .= "帳號不能留空<br/>";
 	}elseif( db_record_exists('users','userid',$userid) ){
 		$error .= "帳號已有人使用<br/>";
 	}elseif( strlen($userid)!=10 || !is_numeric($userid) ){
-		$error .= "這不是電話號碼喔<br/>";
+		$error .= "這不是正確的電話號碼喔<br/>";
 	}elseif( !startsWith($userid, '09') ){
 		$error .= "這不是09開頭的電話號碼喔<br/>";
 	}
@@ -43,20 +43,37 @@ if( isset($_POST['reg_submit']) ){
 	
 		if( $matchuser =="" ){
 		$error .= "配對者不能留空<br/>";
-	}elseif( !db_record_exists('users','userid',$matchuser) || $matchuser !="00" ){
+	}elseif( !db_record_exists('users','userid',$matchuser) && $matchuser !="00" ){
 		$error .= "沒有該配對者<br/>";
+	}
+	
+		if( empty($_FILES['file']['name']) ){
+		$target_path = "Profilepic/default_icon.png";
+	}else{
+		/* insert into db if no error */
+		$target_path = "Profilepic/";
+
+		$target_path = $target_path . basename($_FILES['file']['name']); 
+//		echo  basename($_FILES['file']['tmp_name']);
+		if( move_uploaded_file($_FILES['file']['tmp_name'], $target_path) ) {
+		    $pass = "file uploded";
+			$profilepic = $target_path;
+		} else{
+		    $error .= "file move fail";
+		}
 	}
 	
 /*		 insert into db if no error */
 	if($error ==""){
 		$dbh = my_pdo();
-		$sth = $dbh->prepare("INSERT INTO member(userid,password,name,role,matchuser) 	
-								 VALUES(:userid,:password,:name,:role,:matchuser) ");
+		$sth = $dbh->prepare("INSERT INTO member(userid,password,name,role,matchuser,profilepic) 	
+										 VALUES(:userid,:password,:name,:role,:matchuser,:profilepic) ");
 		$sth->bindParam(":userid", $userid );
 		$sth->bindParam(":password", $password );
 		$sth->bindParam(":name", $name );
 		$sth->bindParam(":role", $role );
 		$sth->bindParam(":matchuser", $matchuser );
+		$sth->bindParam(":profilepic", $profilepic );
 		$rtn = $sth->execute();
 		if($rtn){
 			$pass = "註冊成功";
@@ -96,7 +113,7 @@ if( isset($_POST['reg_submit']) ){
     	<div class="error"><?php echo $error ?></div>
     <?php } ?>
     
-	<form action="reg_add.php" method="post">
+	<form enctype="multipart/form-data" action="reg_add.php" method="post">
 		<div class="form_row">
 			<label for="userid">帳號：(手機號碼)</label>
 			<input type="text" id="userid" name="userid" value="<?php P('userid'); ?>"/>
@@ -110,21 +127,28 @@ if( isset($_POST['reg_submit']) ){
 			<input type="password" id="password1" name="password1" value="<?php P('password1'); ?>"/>
 		</div>
 		<div class="form_row">
-			<label for="email">名字：</label>
+			<label for="name">名字：</label>
 			<input type="text" id="name" name="name" value="<?php P('name'); ?>"/>
 		</div>
-	<div class="form_row">
-			<label for="tel">配對者帳號：(對方還沒有帳號請先輸入00)</label>
+        
+		<div class="form_row">
+			<label for="matchuser">配對者帳號：(對方還沒有帳號請先輸入00)</label>
 			<input type="text" id="matchuser" name="matchuser" value="<?php P('matchuser'); ?>"/>
 		</div>
+        
 		<div class="form_row">
 			<label for="role">身份：</label>
-			<select name="role" id="role">
-				<option value=""<?php if(isset($_POST['role'])&& $_POST['role']=='') echo ' selected';?>>--請選擇身份--</option>
-				<option value="parent"<?php if(isset($_POST['role']) && $_POST['role']=='parent') echo ' selected';?>>父母</option>
-				<option value="child"<?php if(isset($_POST['role']) && $_POST['role']=='child') echo ' selected';?>>小孩</option>
-			</select>
+            <input type="radio" name="role" id="role" value="parent" 
+			<?php  if( isset($_POST['role']) && $_POST['role'] == "parent") echo "checked";?>>父母
+            <input type="radio" name="role" id="role" value="child"
+            <?php  if( isset($_POST['role']) && $_POST['role'] == "child") echo "checked";?>>小孩
 		</div>
+        
+        <div class="form_row">
+			<label for="profilepic">頭貼：</label>
+            <input type="file" accept="image/*" capture="camera" id="file" name="file"/>
+         </div>
+         
 		<input type="submit" name="reg_submit" value="Submit"/>
 	</form>
   </div>

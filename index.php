@@ -39,6 +39,7 @@ if( isset($_POST['login_submit']) ){
     $_SESSION['name'] = $user['name'];
     $_SESSION['matchuser'] = $user['matchuser'];
 	$_SESSION['id'] = $user['id'];
+	$_SESSION['profilepic'] = $user['profilepic'];
     $pass="成功登入，歡迎！";
   }
 }
@@ -68,6 +69,7 @@ if( isset($_POST['login_submit']) ){
         <?php if($pass){ ?><div class="pass"> <?php echo $pass;?> </div><?php } ?>
  
   <div class="profile">
+	<img src="<?php echo $_SESSION['profilepic'];?>" width="150" height="150" alt="profilepic">
 Hello,
 <?php echo $_SESSION['name'];
 	if( $_SESSION['role'] == child){

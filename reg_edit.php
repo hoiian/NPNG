@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <link href="sceen.css" rel="stylesheet" type="text/css" />
 <?php 
 require_once("func.php");
@@ -24,8 +23,6 @@ if( isset($_POST['reg_submit']) ){
 	/* validation */
 	if( $userid =="" ){
 		$error .= "帳號不能留空<br/>";
-	}elseif( db_record_exists('users','userid',$userid) ){
-		$error .= "帳號已有人使用<br/>";
 	}elseif( strlen($userid)!=10 || !is_numeric($userid) ){
 		$error .= "這不是電話號碼喔<br/>";
 	}elseif( !startsWith($userid, '09') ){
@@ -51,7 +48,7 @@ if( isset($_POST['reg_submit']) ){
 	
 		if( $matchuser =="" ){
 		$error .= "配對者不能留空<br/>";
-	}elseif( !db_record_exists('users','userid',$matchuser) || $matchuser !="00" ){
+	}elseif( !db_record_exists('users','userid',$matchuser) && $matchuser !="00" ){
 		$error .= "沒有該配對者<br/>";
 	}
 	
@@ -112,28 +109,29 @@ if( isset($_POST['reg_submit']) ){
 		</div>
 		<div class="form_row">
 			<label for="password">密碼：</label>
-			<input type="password" id="password" name="password" value="<?php P('password',$member['password']); ?>"/>
+			<input type="password" id="password" name="password" value="<?php P('password'); ?>"/>
 		</div>
         <div class="form_row">
 			<label for="password1">確認密碼：</label>
 			<input type="password" id="password1" name="password1" value="<?php P('password1'); ?>"/>
 		</div>
 		<div class="form_row">
-			<label for="email">名字：</label>
+			<label for="name">名字：</label>
 			<input type="text" id="name" name="name" value="<?php P('name',$member['name']); ?>"/>
 		</div>
 	<div class="form_row">
-			<label for="tel">配對者帳號：(對方還沒有帳號請先輸入00)</label>
-			<input type="text" id="matchuser" name="matchuser" value="<?php P('matchuser',$member['$matchuser']); ?>"/>
+			<label for="matchuser">配對者帳號：(對方還沒有帳號請先輸入00)</label>
+			<input type="text" id="matchuser" name="matchuser" value="<?php P('matchuser',$member['matchuser']); ?>"/>
 		</div>
-		<div class="form_row">
+        
+        <div class="form_row">
 			<label for="role">身份：</label>
-			<select name="role" id="role">
-				<option value=""<?php if(isset($_POST['role'])&& $_POST['role']=='') echo ' selected';?>>--請選擇身份--</option>
-				<option value="parent"<?php if($_POST['role']=='parent') echo ' selected';?>>父母</option>
-				<option value="child"<?php if($_POST['role']=='child') echo ' selected';?>>小孩</option>
-			</select>
+            <input type="radio" name="role" id="role" value="parent" 
+			<?php  if( $member['role'] == "parent") echo "checked";?>>父母
+            <input type="radio" name="role" id="role" value="child"
+            <?php  if( $member['role'] == "child") echo "checked";?>>小孩
 		</div>
+
 		<input type="submit" name="reg_submit" value="Submit"/>
 	</form>
   </div>
