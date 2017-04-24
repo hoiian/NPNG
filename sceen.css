@@ -1,224 +1,35 @@
-@charset "utf-8";
-@import url("/*");
-/* CSS Document */
-
 body {
-	margin:0px;
-	padding:0px;
-    text-align: center;
-}
-.login {
-	background:url(img/signup_bg.png);
-    background-size:cover;
-	margin:0 auto;
-	height:960px;
-	width:540px;
-	padding:50px 20px 0px 20px;
-}
-.logo{
-    border-radius:50%;
-    height:180px;
-    width:180px;
-    border:2px #ffffff solid;
-    margin:30px auto;
-}
-img[name$="invalid_name"]{
-    width: 300px;
-    height: auto;
-    margin:20px auto;
-}
-form{
-	margin:0 auto;
+  width: 100vw;
 }
 
-.log_in{
-	color:#000;
-	font-weight:bold;
-}
-.text {
-	background:#DBD2BD;
-	border:none;
-	padding:5px;
-	width:250px;
-	height:25px;
-	margin-bottom:10px;
+.passage h1 {
+  font-size: 60px;
+  text-align: center;
+  width: 100vw;
 }
 
-.profile{
-	font-size:12px;
-	padding:10px;
+.passage {
+  width: 100vw;
 }
 
-.form_group input,.button,input[name$="login_submit"]{
-	text-align: center;
-    background-color:#37bde5; 
-	width:450px;
-    height:90px;
-	color:#FFF;
-	font-size:24px;
-	border-radius:100px;
-	border:4px #FFF solid;
-    margin:5px;   
-}
-input[name$="userid"],input[name$="password"]{
-    color:#37bde5;
-    text-align: left;
-    padding-left:30px;
-    background-color:#AFE4F4; 
-}
-.error {
-	color:#CC3300;
-	font-size:12px;
-	background:#FFCCCC;
-	padding:5px;
-	border:#FF99CC solid 1px;
+.form_row label, .form_row input:not(#role) {
+  display: block;
+  font-size: 60px;
+  border: none;
 }
 
-.pass {
-	color:#009;
-	font-size:12px;
-	background:#FFFFCC;
-	padding:5px;
-	border:#009 solid 1px;
+input[type='radio'] {
+  transform: scale(3);
 }
 
-.profile{
-	line-height:25px;
-	background:#DFD7CA;
-	margin:10px 0px;
+.news_edit {
+  background-color: #f2f2f2;
+  width: 100vw;
+  margin-left: 0px;
+  padding: 15px;
 }
 
-.news_listpage {
-	overflow:hidden;
-}
-
-.news_listpage ul {
-	list-style:none;
-	margin:0px;
-	padding:0px;	
-}
-
-
-.news_listpage ul li a.n {
-	margin:15px;
-	border-top:#666666 dashed 1px;
-	width:500px;
-	height:120px;
-	float:left;
-	text-decoration:none;
-	font-size:12px;
-	color:#333;
-	line-height:18px;
-	overflow:hidden;
-	margin-bottom:10px;
-	padding:10px;
-	position:relative;
-}
-
-/*.news_listpage ul li a img {
-	margin-right:10px;
-	float:left;
-	width:190px;
-	border:#FFF solid 2px;
-}
-
-.news_listpage ul li a:hover img {
-	border:#000 solid 2px;
-}
-
-
-.news_listpage ul li a span.title {
-	font-size: 14px;
-	color: #006600;
-	font-weight: bold;
-	display:block;
-	margin-bottom:5px;
-	position:absolute;
-	left:230px;
-}
-
-.news_listpage ul li a span.summary{
-	position:absolute;
-	left:230px;
-	top:35px;
-	margin:10px 10px 0px 0px;
-}
-
-.news_listpage ul li a:hover span.title {
-	color:#C00;
-	text-decoration:underline;
-}
-*/
-.news_listpage ul li a:hover {
-	background:#FFFFCC;
-	border-top:#000 1px solid;
-}
-
-.news_edit{
-	padding:0px 30px;
-}
-.t{
-	width:800px;
-}
-
-.page{
-	margin:0px 0px 0px 550px;
-	font-size:12px;
-	color:#006600;
-}
-
-.page a{
-	font-size:12px;
-	color:#CC0033;
-	font-weight:bold;
-	text-decoration:none;
-}
-
-.page a:hover{
-	color:#FFFF00;
-	text-decoration:none;
-}
-textarea {
-	width:800px;
-	height:500px;
-}
-
-.ed{
-	color:#CC0066;
-}
-
-.sec{
-	float:left; 
-}
-
-.pri{
-	float:right;
-}
-
-.homework{
-	overflow:auto;
-	height:650px;
-	font-size:12px;
-}
-
-.homework ul{
-	list-style:none;
-	width:750px;
-}
-
-.homework ul li .user{
-	background:#C0C0C0;
-	color:#000;
-}
-
-.homework ul li{
-	border-bottom:#999 dashed 1px;
-}
-
-.homework ul li a{
-	color:#900;
-}
-
-.homework ul li a:hover{
-	color:#FF0;
+.form_row input:not(#role) {
+  width: 98%;
+  outline: none;
 }
