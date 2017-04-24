@@ -89,6 +89,8 @@ if( isset($_POST['reg_submit']) ){
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="user-scalable=0">
+<meta name="viewport" content="width=device-width, initial-scale=0.4">
 <title>註冊</title>
 
 </head>
@@ -102,7 +104,7 @@ if( isset($_POST['reg_submit']) ){
     <div class="words">
     </div>
     <div class="passage">
-    <h1 class="title">註冊</h1>
+    <h1 class="title">急速家事新會員註冊</h1>
     <div class="news_edit">
     <?php if($pass){ ?>
      	<div class="pass"><?php echo $pass ?></div>
@@ -114,8 +116,8 @@ if( isset($_POST['reg_submit']) ){
 
 	<form enctype="multipart/form-data" action="reg_add.php" method="post">
 		<div class="form_row">
-			<label for="userid">帳號：(手機號碼)</label>
-			<input type="text" id="userid" name="userid" value="<?php P('userid'); ?>"/>
+			<label for="userid">帳號：</label>
+			<input type="text" id="userid" name="userid" value="<?php P('userid'); ?>" placeholder="手機號碼"/>
 		</div>
 		<div class="form_row">
 			<label for="password">密碼：</label>
@@ -131,18 +133,18 @@ if( isset($_POST['reg_submit']) ){
 		</div>
 
 		<div class="form_row">
-			<label for="matchuser">配對者帳號：(對方還沒有帳號請先輸入00)</label>
-			<input type="text" id="matchuser" name="matchuser" value="<?php P('matchuser'); ?>"/>
+			<label for="matchuser">配對者帳號：</label>
+			<input placeholder="對方還沒有帳號請先輸入00" type="text" id="matchuser" name="matchuser" value="<?php P('matchuser'); ?>"/>
 		</div>
 
 		<div class="form_row">
 			<label for="role">身份：</label>
             <input type="radio" name="role" id="role" value="parent"
 						<?php  if( isset($_POST['role']) && $_POST['role'] == "parent") echo "checked";?>>
-						<h3>父母</h3>
-            <input type="radio" name="role" id="role" value="child"
+						<label style="font-size: 60px; display:inline;">父母</label>
+            <input type="radio" name="role" id="role" value="child" style="border-style:none;font-size:60px;"
             <?php  if( isset($_POST['role']) && $_POST['role'] == "child") echo "checked";?>>
-						<h3>小孩</h3>
+						<label style="font-size: 60px; display:inline;">小孩</label>
 		</div>
 
         <div class="form_row">
