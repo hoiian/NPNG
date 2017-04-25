@@ -1,4 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
+<meta name="viewport" content="width=device-width; initial-scale=0.3; maximum-scale=0.3; user-scalable=0;">
 <link href="sceen.css" rel="stylesheet" type="text/css" />
 <?php
 require_once ("func.php");
@@ -89,8 +90,6 @@ if( isset($_POST['reg_submit']) ){
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="user-scalable=0">
-<meta name="viewport" content="width=device-width, initial-scale=0.4">
 <title>註冊</title>
 
 </head>
@@ -104,7 +103,12 @@ if( isset($_POST['reg_submit']) ){
     <div class="words">
     </div>
     <div class="passage">
-    <h1 class="title">急速家事新會員註冊</h1>
+		<div class="header">
+    	<h1 class="title">急速家事新會員註冊</h1>
+			<div class="return">
+			<a href="index.php"><img src="img/arrow.png" alt="測試圖片" border="0"></a>
+		 </div>
+		</div>
     <div class="news_edit">
     <?php if($pass){ ?>
      	<div class="pass"><?php echo $pass ?></div>
@@ -147,12 +151,13 @@ if( isset($_POST['reg_submit']) ){
 						<label style="font-size: 60px; display:inline;">小孩</label>
 		</div>
 
-        <div class="form_row">
+    <div class="form_row">
 			<label for="profilepic">頭貼：</label>
-            <input type="file" accept="image/*" capture="camera" id="file" name="file"/>
-         </div>
-
+      <input type="file" accept="image/*" capture="camera" id="file" name="file"/>
+    </div>
+	<div class="submit">
 		<input type="submit" name="reg_submit" value="Submit"/>
+	</div>
 	</form>
   </div>
 </div>
