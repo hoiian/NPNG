@@ -1,55 +1,42 @@
-<<<<<<< HEAD
-@charset "utf-8";
-@import url("/*");
-
-/* CSS Document */
-
 * {
   margin: 0px;
 }
 
 body {
-  margin: 0px;
-  padding: 0px;
-  text-align: center;
+	margin: 0px;
+	padding: 0px;
 	width: 100%;
+	background: url(img/signup_bg.png) repeat;
+	background-size:100% auto;
 }
 
 .login {
-	background: url(img/signup_bg.png);
-    background-size: 100% 100%;
-    height: 100%;
+    height: 95%;
     width: 100%;
-    border-bottom: dotted;
     margin: 0px auto;
     padding-top: 5%;
+	text-align:center;
 }
 
-.logo {
+.login .logo {
   border-radius: 50%;
   height: 180px;
   width: 180px;
   border: 2px #ffffff solid;
-  padding-top: 2%;
-	padding-bottom: 2%;
+  margin:0 auto;
 }
 
-img[name$="invalid_name"] {
-  width: 300px;
+.login img[name$="invalid_name"] {
+  width: 75%;
   height: auto;
   margin: 20px auto;
 }
 
-form {
+.login form {
   margin: 0 auto;
 }
 
-.log_in {
-  color: #000;
-  font-weight: bold;
-}
-
-.text {
+.login form.text {
   background: #DBD2BD;
   border: none;
   padding: 5px;
@@ -58,12 +45,7 @@ form {
   margin-bottom: 10px;
 }
 
-.profile {
-  font-size: 12px;
-  padding: 10px;
-}
-
-.form_group input, .button, input[name$="login_submit"] {
+.login .form_group input, .button, input[name$="login_submit"] {
   text-align: center;
   background-color: #37bde5;
   width: 80%;
@@ -75,22 +57,30 @@ form {
   margin: 5px;
 }
 
-.form_group input[name$="userid"], .form_group input[name$="password"] {
+.login .form_group input[name$="userid"], .form_group input[name$="password"] {
   color: #37bde5;
   text-align: left;
   padding-left: 30px;
   background-color: #AFE4F4;
 }
 
-.error {
+.login .error {
   color: #CC3300;
   font-size: 12px;
   background: #FFCCCC;
   padding: 5px;
+  width:80%;
   border: #FF99CC solid 1px;
+  margin:0 auto;
 }
 
-.pass {
+/*-----------------*/
+.afterlogin{
+	width:90%;
+	padding:5%;
+}
+
+.afterlogin .pass {
   color: #009;
   font-size: 12px;
   background: #FFFFCC;
@@ -98,114 +88,90 @@ form {
   border: #009 solid 1px;
 }
 
-.profile {
+.afterlogin .profile {
   line-height: 25px;
   background: #DFD7CA;
   margin: 10px 0px;
 }
 
-.news_listpage {
-  overflow: hidden;
+.afterlogin .tasklist {
+  overflow:scroll;
 }
 
-.news_listpage ul {
+.afterlogin .tasklist ul {
   list-style: none;
   margin: 0px;
   padding: 0px;
 }
 
-.news_listpage ul li a.n {
-  margin: 15px;
+.afterlogin .tasklist ul li a.n {
+  margin: 5%;
   border-top: #666666 dashed 1px;
-  width: 500px;
+  width: 90%;
   height: 120px;
   float: left;
   text-decoration: none;
   font-size: 12px;
   color: #333;
   line-height: 18px;
-  overflow: hidden;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 5%;
   position: relative;
 }
 
 
-/*.news_listpage ul li a img {
+.afterlogin .tasklist ul li a img {
 	margin-right:10px;
 	float:left;
 	width:190px;
 	border:#FFF solid 2px;
 }
-
-.news_listpage ul li a:hover img {
+.afterlogin .tasklist ul li a:hover img {
 	border:#000 solid 2px;
 }
-
-
-.news_listpage ul li a span.title {
+.afterlogin .tasklist ul li a span.title {
 	font-size: 14px;
 	color: #006600;
 	font-weight: bold;
 	display:block;
 	margin-bottom:5px;
-	position:absolute;
-	left:230px;
-}
 
-.news_listpage ul li a span.summary{
-	position:absolute;
-	left:230px;
-	top:35px;
-	margin:10px 10px 0px 0px;
 }
-
-.news_listpage ul li a:hover span.title {
+.afterlogin .tasklist ul li a span.summary{
+	margin:10px 0px;
+}
+.afterlogin .tasklist ul li a:hover span.title {
 	color:#C00;
 	text-decoration:underline;
 }
-*/
 
-.news_listpage ul li a:hover {
+.afterlogin .tasklist ul li a:hover {
   background: #FFFFCC;
   border-top: #000 1px solid;
 }
 
-.news_edit {
-  padding: 0px 30px;
-}
-
-.t {
-  width: 800px;
-}
-
-.page {
-  margin: 0px 0px 0px 550px;
+.afterlogin .page {
+  margin: 0px;
   font-size: 12px;
   color: #006600;
 }
 
-.page a {
+.afterlogin .page a {
   font-size: 12px;
   color: #CC0033;
   font-weight: bold;
   text-decoration: none;
 }
 
-.page a:hover {
+.afterlogin .page a:hover {
   color: #FFFF00;
   text-decoration: none;
 }
 
-textarea {
-  width: 800px;
-  height: 500px;
-}
-
-.ed {
+.afterlogin .ed {
   color: #CC0066;
 }
-
+/*-----------------*/
 .sec {
   float: left;
 }
@@ -241,4 +207,3 @@ textarea {
 .homework ul li a:hover {
   color: #FF0;
 }
-

@@ -31,7 +31,7 @@ if ($sum % 3 > 0 ) { $sum = floor($sum / 3) + 1; } else { $sum = floor($sum / 3)
   
     <span class="title">任務</span>
     
-    <div class="news_listpage"> 
+    <div class="tasklist"> 
       
     <?php if( has_role('parent') ): ?>
        <a href="task_add.php" class="ed" >[新增任務]</a>

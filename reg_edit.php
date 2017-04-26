@@ -15,7 +15,7 @@ if( isset($_POST['reg_submit']) ){
 	/** set variables from post **/
 	$userid = trim($_POST['userid']);
 	$password = trim($_POST['password']);
-	$password1 = trim($_POST['password1']);
+//	$password1 = trim($_POST['password1']);
 	$role = trim($_POST['role']);
 	$name = trim($_POST['name']);
 	$matchuser = trim($_POST['matchuser']);
@@ -37,8 +37,6 @@ if( isset($_POST['reg_submit']) ){
 		$error .= "密碼不能留空<br/>";
 	}elseif(strlen($password) <8){
 		$error .= "密碼長度至少為8<br/>";	
-	}elseif($password != $password1){
-		$error .= "兩次密碼不一樣<br/>";	
 	}
 
 
@@ -111,10 +109,7 @@ if( isset($_POST['reg_submit']) ){
 			<label for="password">密碼：</label>
 			<input type="password" id="password" name="password" value="<?php P('password'); ?>"/>
 		</div>
-        <div class="form_row">
-			<label for="password1">確認密碼：</label>
-			<input type="password" id="password1" name="password1" value="<?php P('password1'); ?>"/>
-		</div>
+
 		<div class="form_row">
 			<label for="name">名字：</label>
 			<input type="text" id="name" name="name" value="<?php P('name',$member['name']); ?>"/>
@@ -124,13 +119,22 @@ if( isset($_POST['reg_submit']) ){
 			<input type="text" id="matchuser" name="matchuser" value="<?php P('matchuser',$member['matchuser']); ?>"/>
 		</div>
         
-        <div class="form_row">
-			<label for="role">身份：</label>
-            <input type="radio" name="role" id="role" value="parent" 
-			<?php  if( $member['role'] == "parent") echo "checked";?>>父母
-            <input type="radio" name="role" id="role" value="child"
-            <?php  if( $member['role'] == "child") echo "checked";?>>小孩
+       <div class="form_row role">
+			<label for="role">身份：</label> <br/>
+            <input type="radio" name="role" id="parent" value="parent"
+						<?php  if( $member['role'] == "parent") echo "checked";?>>
+                       
+						<label for="parent" style="display:inline;">父母</label>
+                        
+            <input type="radio" name="role" id="child" value="child"
+            <?php  if( $member['role'] == "child") echo "checked";?>>
+						<label for="child" style="display:inline;">小孩</label>
 		</div>
+
+        <div class="form_row">
+                <label for="profilepic">頭貼：</label>
+          <input type="file" accept="image/*" capture="camera" id="file" name="file"/>
+        </div>
 
 		<input type="submit" name="reg_submit" value="Submit"/>
 	</form>
