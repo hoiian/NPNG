@@ -5,6 +5,8 @@ require_once ("func.php");
 ?>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
 <link href="sceen.css" rel="stylesheet" type="text/css" />
 <link href="bootstrap.min.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -16,9 +18,7 @@ require_once ("func.php");
 
 <body>
 <div class="login">
-    <div class="logo"><img name="logo"></div>
-    <img name="invalid_name" src="img/invalid_name.png">
-     
+
 <?php
 
 $error = "";
@@ -54,6 +54,11 @@ if( isset($_POST['login_submit']) ){
 ?>
 
 <?php if( !has_session() ): ?>
+	<div>
+    	<div class="logo"><img name="logo"></div>
+	    <img name="invalid_name" src="img/invalid_name.png">
+	</div>
+    
     <?php if(!$pass){ ?>
     <?php if($error){ ?>
         <div class="error"><?php echo $error ?></div>
