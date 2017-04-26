@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <meta name="viewport" content="width=device-width; initial-scale=0.3; maximum-scale=0.3; user-scalable=0;">
-<link href="sceen.css" rel="stylesheet" type="text/css" />
+<link href="screen_reg_add.css" rel="stylesheet" type="text/css" />
 <?php
 require_once ("func.php");
 $error = "";
