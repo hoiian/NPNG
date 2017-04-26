@@ -7,14 +7,11 @@ require_role('parent');
 $show_msg = isset($_GET['msg']) && $_GET['msg'] =='insert_ok';
 $error = "";
 if( isset($_POST['task_submit']) ){
-	$created_at = trim($_POST['task_created_at']);
 	$title = trim($_POST['task_title']);
 	$content = trim($_POST['task_content']);
 	$deadline = trim($_POST['task_deadline']);
+	$money = trim($_POST['money']);
 	
-	if( $created_at =="" ){
-		$error = "日期不能留空<br/>";
-	}
 	if( $deadline =="" ){
 		$error = "到期日期不能留空<br/>";
 	}
@@ -24,14 +21,18 @@ if( isset($_POST['task_submit']) ){
 	if( $content =="" ){
 		$error .= "內容不能留空<br/>";
 	}
+	if( $money =="" ){
+		$error .= "獎勵不能留空<br/>";
+	}
+	
 	if($error ==""){
 		$dbh = my_pdo();
-		$sth = $dbh->prepare(" INSERT INTO task (title,post,created_at,deadline) 	
-								 VALUES(:title,:content,:created_at,:deadline) ");
+		$sth = $dbh->prepare(" INSERT INTO task (title,post,deadline,money) 	
+								 VALUES(:title,:content,:deadline,:money) ");
 		$sth->bindParam(":title", $title );
 		$sth->bindParam(":content", $content );
-		$sth->bindParam(":created_at", $created_at );
 		$sth->bindParam(":deadline", $deadline );
+		$sth->bindParam(":money", $money );
 		$rtn = $sth->execute();
 		if($rtn){
 			header("Location: task_add.php?msg=insert_ok");
@@ -69,17 +70,21 @@ if( isset($_POST['task_submit']) ){
     	<div class="error"><?php echo $error ?></div>
     <?php } ?>
 	<form action="task_add.php" method="post">
-    	<div class="form_row">
-			日期：<br/><input type="date" class="t" name="task_created_at" value="<?php P('task_created_at'); ?>"/>
-		</div>
-            <div class="form_row">
+
+        <div class="form_row">
 			到期日期：<br/><input type="date" class="t" name="task_deadline" value="<?php P('task_created_at'); ?>"/>
 		</div>
+        
 		<div class="form_row">
 			標題：<br/><input type="text" class="t" name="task_title" value="<?php P('task_title'); ?>"/>
 		</div>
+        
 		<div class="form_row">
 			內容：<br/><textarea name="task_content"><?php P('task_content'); ?>	</textarea>
+		</div>
+        
+        <div class="form_row">
+			獎勵：<br/><input type="text" class="t" name="money" value="<?php P('money'); ?>"/>
 		</div>
       
 		<input type="submit" name="task_submit" value="Submit"/>

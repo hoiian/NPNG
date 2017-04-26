@@ -73,35 +73,12 @@ if( isset($_POST['login_submit']) ){
      </div>
       <?php } ?>
       
-      <!------------------以下是登入後才有的畫面----------------------->
-      <?php else: ?>
-      <div class="afterlogin">
-        <?php if($pass){ ?><div class="pass"> <?php echo $pass;?> </div><?php } ?>
-		
-        <div class="profile">
-			<img src="<?php echo $_SESSION['profilepic'];?>" width="80" height="80" alt="profilepic">
-            Hello,
-            <?php echo $_SESSION['name'];
-                if( $_SESSION['role'] == child){
-                    echo "小朋友<br/>";
-                }
-                if( $_SESSION['role'] == parent){
-                    echo "爸爸/媽媽<br/>";
-                }
-            ?>
-            <a href="reg_edit.php?id=<?php echo $_SESSION['id'];?>" class="button" align="center">編輯</a>
-            <a href="logout.php" class="button" align="center">登出</a>
-		</div>
-        
-     <?php if( has_role('child') ): ?>
-    <!--   <a href="student_add.php?>" class="ed" >[任務]</a>-->
-    <?php endif; ?>
-
-        <div class="task">
-        <?php include("task_list.php"); ?>
-        </div>
-
-	</div>
+      <!------------------登入後跳到task_list----------------------->
+      <?php else: 
+	  		header('Location: task_list.php');
+	  ?>
+      
+   
 <?php endif ;?>
 
 </body>
