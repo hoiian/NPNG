@@ -20,13 +20,13 @@ if ($sum % 3 > 0 ) { $sum = floor($sum / 3) + 1; } else { $sum = floor($sum / 3)
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>任務</title>
-<link href="sceen.css" rel="stylesheet" type="text/css" />
+<link href="css/sceen.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
 <div class="afterlogin">
-        <?php if($pass){ ?><div class="pass"> <?php echo $pass;?> </div><?php } ?>
-        
+	存款 | <a href="history.php">歷史任務</a>
+       
         <div class="profile">
 			<img src="<?php echo $_SESSION['profilepic'];?>" width="80" height="80" alt="profilepic">
             Hello,
@@ -42,17 +42,10 @@ if ($sum % 3 > 0 ) { $sum = floor($sum / 3) + 1; } else { $sum = floor($sum / 3)
             <a href="logout.php" class="button" align="center">登出</a>
 		</div>
         
-		<?php if( has_role('child') ): ?>
-  		  <!--   <a href="student_add.php?>" class="ed" >[任務]</a>-->
-		<?php endif; ?>
+        <div class="bank">
+            <span class="title">存款</span>
 
-        <div class="task">
-            <span class="title">任務</span>
 
-			<?php if( has_role('parent') ): ?>
-                <a href="task_add.php" class="ed" >[新增任務]</a>
-            <?php endif; ?>
-	
         <div class="tasklist">
         <ul>
             <?php 
