@@ -4,7 +4,7 @@
 
 .tasklist ul{
 	list-style:none;
-	padding:400px 0;
+	padding:400px 0 0 0;
 
 }
 
@@ -23,20 +23,24 @@
 }
 .tasklist li .title{
   font-size:2.5vh;
-  color:#000000;
+  color:#de000000;
   background-color:#f0f0f0; 
-  top:-2vh; 
+  position:absolute;
+  top:3vh; 
+  margin-left:140px;
 
 }
 .tasklist li .time{
   font-size:2vh;
   top:7vh;
-  margin-left:10vw;
+  margin-left:140px;
   position:absolute;
+  color:#8b000000;
 
 }
 .tasklist li .money{
-  padding-top:-100px;
-  float: right;
-  font-size:2.5vh;
+	font-size: 2.5vh;
+    position: absolute;
+    top: 5vh;
+    right: 3vh;
 }
