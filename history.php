@@ -33,11 +33,15 @@ function iconpath($type){
 
 
 	<div class="header">
-    <div class="title">歷史任務<img src=img/ic_settings.png></div>
-	<ul>
-	    <li><a href="bank.php">存款 </a></li>
-    	<li>歷史任務</li>
-    </ul>
+        <div class="title">
+            <p>歷史任務</p>
+            <a href="#"><img src=img/ic_settings.png></a>
+        </div>
+        
+        <ul>
+            <li><a href="bank.php">存款 </a></li>
+            <li style="border-bottom:#FFFF8C 3px solid">歷史任務</li>
+        </ul>
 	</div>
     
 <div class="history">
@@ -47,7 +51,7 @@ function iconpath($type){
 			
             do{ $row = $sth->fetch(); if($row){?>
             <li>
-					<img src="img/<?php iconpath($row['type']);?>" alt="taskicon"/>
+					<img src="img/<?php iconpath($row['type']);?>" alt="taskicon"/><br/>
                     
                     <span class="title"><?php echo $row['title'] ?></span><br/>
                     <span class="money"><?php echo $row['money'] ?>元</span> <br/>
