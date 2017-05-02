@@ -33,7 +33,7 @@ function iconpath($type){
 
 
 	<div class="header">
-    <div class="title">歷史任務</div>
+    <div class="title">歷史任務<img src=img/ic_settings.png></div>
 	<ul>
 	    <li><a href="bank.php">存款 </a></li>
     	<li>歷史任務</li>
