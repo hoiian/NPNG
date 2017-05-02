@@ -82,26 +82,46 @@ input[name$="login_submit"] {
 	position:fixed;
 	top:0;
 	left:0;
-}
-
-.header .title{
-	height:150px;
-	background:#FFF;
+	height:4vh;
 	text-align:center;
-	font-size:24pt;
+    background-color:#1fb3df;
+    z-index:2;
 }
+.title{  
+    margin-top:4vh;
+	height:6.5vh;
+	text-align:center;
+	font-size:3vh;
+    width: 100%;
+    color:#37bde5;
+    background-color: #ffffff;
+    padding:2.5vh 0;
+    vertical-align: middle;
 
+}
+.title img{
+    float:right;
+    padding:0 2vh;
+    height:4.5vh;
+    width:auto;
+}
 .header ul{
 	list-style:none;
-	padding:0;
+    position:relative;
+    margin-top:-3vh;
+    width: 100%;
+    height:7.5vh;
+    background-color:#1fb3df;
+    line-height:7vh;
+    box-shadow:0px 4px 14px 6px rgba(0,0,0,0.3);
 }
-
-.haeder ul li{
-	float:left;
-	width:50%;
-	padding:0 5%;
+.header ul li{
+    display:inline-block;
 	box-sizing:border-box;
-	
+	color:#ffffff;
+    background-color:#1fb3df;
+    padding:0 10%;
+    font-size:2.5vh;
 }
 
 /*-----------------
