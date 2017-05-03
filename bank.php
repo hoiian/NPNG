@@ -2,8 +2,7 @@
 <?php 
 require_once("func.php");
 $dbh = my_pdo();
-$sth = $dbh->query("select * from `task` order by id desc");
-
+$sth = $dbh->query("SELECT * FROM  `task` WHERE  `status` !=2 order by id desc");
 function iconpath($type){
 	switch($type){
 	case a: $icon = "o_flower.png.png"; break;
@@ -25,7 +24,7 @@ function iconpath($type){
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>存款</title>
+<title>急速家事</title>
 <link rel="icon" href="img/icon.ico" />
 <link href="css/sceen.css" rel="stylesheet" type="text/css" />
 <link href="css/screen_bank.css" rel="stylesheet" type="text/css" />
@@ -35,54 +34,56 @@ function iconpath($type){
 <div class="bank">
 	<div class="header">
         <div class="title">
-            <p>存款</p>
+            <p>急速家事</p>
             <div class="nothing"></div>
-            <a href="#" class="right" ><img src="img/ic_settings.png"></a>
+            <a href="profile.php" class="right" ><img src="img/ic_settings.png" alt="setting"></a>
         </div>
         
         <ul>
             <li style="border-bottom:#FFFF8C 3px solid">存款</li>
-            <li><a href="history.php">歷史任務</a></li>
+            <li><a href="history.php">完成任務</a></li>
         </ul>
 	</div>
         
 	<a href="logout.php" class="button" align="center">登出</a>
     
-	    <div class="">
-        <p>任務存款:</p>
+	    <div class="save">
+        <p>目前存款:</p>
         <p>$2,000</p>
         </div>
         
         <div class="tasklist">
         
-        <div class="tit"><div class="nothing"></div>目前任務</div>
+        <div class="tit"><div class="nothing"></div>未完成任務</div>
         <ul>
             <?php 
            do{ $row = $sth->fetch(); if($row){?>
+            <a href="task_detail.php?id=<?php echo $row['id'] ?>">
             <li>
-                
                 	<img src="img/<?php iconpath($row['type']);?>" alt="taskicon"/>
+                    <?php if ($row['status']==1):?>
+                    <span style="color:#FFF;">待審核</span>
+                    <?php endif; ?>
                     <span class="money">
                         <div class="nothing"></div>
                         $<?php echo $row['money'];?>
                     </span>
-                    
-                     <?php if( has_role('child') ): ?>
-                    <span><a href="child_add.php">上傳照片</a></span>
-                    <?php endif; ?>
-                
             </li>
+            </a>
             <?php }} while($row) ?>   
           </ul>
         </div>
         
         <div class="bar">
+        	<div class="full">
+            	<div class="perc"></div>
+            </div>
         </div>
 
 		</div> <!--task-->
       
       
-      <div class="new_task" <?php if( has_role('child') ): ?>style="background:#9B9B9B;"<?php endif; ?>>
+      <div class="new_task btn_bottom" <?php if( has_role('child') ): ?>style="background:#9B9B9B;"<?php endif; ?>>
           <div class="nothing"></div>
           <span>
           <?php if( has_role('parent') ): ?><a href="task_add.php"><?php endif; ?>

@@ -1,8 +1,9 @@
 <html>
 <?php 
 require_once("func.php");
+
 $dbh = my_pdo();
-$sth = $dbh->query("select * from `task` order by id desc");
+$sth = $dbh->query("SELECT * FROM  `task` WHERE  `status` =2 order by id desc");
 function iconpath($type){
 	switch($type){
 	case a: $icon = "o_flower.png.png"; break;
@@ -34,13 +35,13 @@ function iconpath($type){
 
 	<div class="header">
         <div class="title">
-            <p>歷史任務</p>
-            <a href="#" class="right"><img src=img/ic_settings.png></a>
+            <p>急速家事</p>
+            <a href="profile.php" class="right"><img src=img/ic_settings.png alt="setting"></a>
         </div>
         
         <ul>
             <li><a href="bank.php">存款 </a></li>
-            <li style="border-bottom:#FFFF8C 3px solid">歷史任務</li>
+            <li style="border-bottom:#FFFF8C 3px solid">完成任務</li>
         </ul>
 	</div>
     
@@ -50,25 +51,17 @@ function iconpath($type){
             <?php 
 			
             do{ $row = $sth->fetch(); if($row){?>
+            <a href="task_detail.php?id=<?php echo $row['id'] ?>">
             <li>
 					<img src="img/<?php iconpath($row['type']);?>" alt="taskicon"/><br/>
                     
                     <span class="title"><?php echo $row['title'] ?></span><br/>
                     <span class="money"><?php echo $row['money'] ?>元</span> <br/>
                     <span class="time"><?php echo date("Y-m-d h:i A",strtotime($row['created_at'])) ?></span>
-
-                    
-                    <?php if( has_role('parent') ): ?>
-                           <a href="task_edit.php?id=<?php echo $row['id'];?>" class="ed" >Edit</a> |
-                           <a onClick="return confirm('確認刪除？');" href="task_delete.php?id=<?php echo $row['id'];?>" class="ed"> Delete</a>
-                    <?php endif; ?>
-                    
-                     <?php if( has_role('child') ): ?>
-                    <span><a href="child_add.php">上傳照片</a></span>
-                    <?php endif; ?>
                     
             </li>
             <?php } } while($row) ?>   
+            </a>
           </ul>
      
         </div>

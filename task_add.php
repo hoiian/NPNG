@@ -33,12 +33,14 @@ if( isset($_POST['task_submit']) ){
 	if($error ==""){
 		$dbh = my_pdo();
 		$parent = $_SESSION['userid'];
-		$sth = $dbh->prepare(" INSERT INTO task (money,type,title,parent) 	
-								 VALUES(:money,:type,:title,:parent)");
+		$img = "Taskphoto/incomplete.png";
+		$sth = $dbh->prepare(" INSERT INTO task (money,type,title,parent,img) 	
+								 VALUES(:money,:type,:title,:parent,:img)");
 		$sth->bindParam(":money", $money );
 		$sth->bindParam(":type", $type );
 		$sth->bindParam(":title", $title );
 		$sth->bindParam(":parent", $parent );
+		$sth->bindParam(":img", $img );
 		$rtn = $sth->execute();
 		if($rtn){
 			header("Location: task_add.php?msg=insert_ok");
@@ -136,7 +138,7 @@ if( isset($_POST['task_submit']) ){
     
     
   </div>
-
+  
 </div>
 </body>
 </html>

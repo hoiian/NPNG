@@ -42,7 +42,8 @@ if( isset($_POST['reg_submit']) ){
 		$error .= "沒有該配對者<br/>";
 	}
 		if( empty($_FILES['file']['name']) ){
-		$profilepic = "Profilepic/default_icon.png";
+			if($role == "child"){$profilepic = "Profilepic/photo_1.png";}
+			else if ($role == "parent") {$profilepic = "Profilepic/photo_2.png";}
 	}else{
 		/* insert into db if no error */
 		$target_path = "Profilepic/";
