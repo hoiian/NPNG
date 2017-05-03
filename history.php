@@ -35,7 +35,7 @@ function iconpath($type){
 	<div class="header">
         <div class="title">
             <p>歷史任務</p>
-            <a href="#"><img src=img/ic_settings.png></a>
+            <a href="#" class="right"><img src=img/ic_settings.png></a>
         </div>
         
         <ul>

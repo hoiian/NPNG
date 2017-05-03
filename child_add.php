@@ -113,6 +113,7 @@ if( isset($_POST['taskphoto_submit']) ){
 </div>
 </div>
 </div>
+</div>
 
 </body>
 </html>

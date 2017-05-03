@@ -26,15 +26,19 @@ if( isset($_POST['task_submit']) ){
 	}
 	if( $money =="" ){
 		$error .= "獎勵不能留空<br/>";
+	}else if($money<=0){
+		$error .= "獎勵要為正數<br/>";
 	}
 	
 	if($error ==""){
 		$dbh = my_pdo();
-		$sth = $dbh->prepare(" INSERT INTO task (money,type,title) 	
-								 VALUES(:money,:type,:title)");
+		$parent = $_SESSION['userid'];
+		$sth = $dbh->prepare(" INSERT INTO task (money,type,title,parent) 	
+								 VALUES(:money,:type,:title,:parent)");
 		$sth->bindParam(":money", $money );
 		$sth->bindParam(":type", $type );
 		$sth->bindParam(":title", $title );
+		$sth->bindParam(":parent", $parent );
 		$rtn = $sth->execute();
 		if($rtn){
 			header("Location: task_add.php?msg=insert_ok");
@@ -49,6 +53,7 @@ if( isset($_POST['task_submit']) ){
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/sceen.css" rel="stylesheet" type="text/css" />
 <link href="css/screen_task_add.css" rel="stylesheet" type="text/css" />
 
 <title>新增任務</title>
@@ -59,22 +64,21 @@ if( isset($_POST['task_submit']) ){
 <div>
   <div class="content">
     
-      <div style="padding:3px;"><a href="index.php">主頁</a> > 新增任務</div>
+     	<div class="header">
+        <div class="title">
+        	
+            <p>新任務</p>
+            <div class="nothing"></div>
+            <a href="bank.php" class="right"><img src="img/ic_back.png"></a>
+        </div>
+	</div>
 
     <div class="task_add"> 
-    
-    <?php if($show_msg){ ?>
-    	<div class="pass">Insert OK</div>
-	<?php } ?>
-
-	<?php if($error){ ?>
-    	<div class="error"><?php echo $error ?></div>
-    <?php } ?>
     
 	<form action="task_add.php" method="post">
 
         <section>
-			獎勵：<br/><input type="number" class="money" name="money" pattern="\d*" value="<?php P('money'); ?>"/>
+			<input type="number" class="money" name="money" pattern="\d*" value="<?php P('money'); ?>"/>
 		</section>
         
         <div>
@@ -119,8 +123,16 @@ if( isset($_POST['task_submit']) ){
         <label class="l" for="l">運動</label>
 		</section>
       
-		<input type="submit" name="task_submit" value="Submit"/>
+		<input type="submit" name="task_submit" value=""/>
 	</form>
+    
+    <?php if($show_msg){ ?>
+    	<div class="pass">Insert OK</div>
+	<?php } ?>
+
+	<?php if($error){ ?>
+    	<div class="error"><?php echo $error ?></div>
+    <?php } ?>
     
     
   </div>

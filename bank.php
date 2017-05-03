@@ -37,7 +37,7 @@ function iconpath($type){
         <div class="title">
             <p>存款</p>
             <div class="nothing"></div>
-            <a href="#"><img src=img/ic_settings.png></a>
+            <a href="#" class="right" ><img src="img/ic_settings.png"></a>
         </div>
         
         <ul>
@@ -47,6 +47,12 @@ function iconpath($type){
 	</div>
         
 	<a href="logout.php" class="button" align="center">登出</a>
+    
+	    <div class="">
+        <p>任務存款:</p>
+        <p>$2,000</p>
+        </div>
+        
         <div class="tasklist">
         
         <div class="tit"><div class="nothing"></div>目前任務</div>
@@ -78,9 +84,12 @@ function iconpath($type){
       
       <div class="new_task" <?php if( has_role('child') ): ?>style="background:#9B9B9B;"<?php endif; ?>>
           <div class="nothing"></div>
-          <span><a href="task_add.php">新任務</a></span>
+          <span>
+          <?php if( has_role('parent') ): ?><a href="task_add.php"><?php endif; ?>
+          新任務
+          <?php if( has_role('parent') ): ?></a><?php endif; ?>
+          </span>
       </div>
-</div>
 
 </body>
 </html>
