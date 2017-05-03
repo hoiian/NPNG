@@ -81,7 +81,8 @@
    vertical-align:middle;
 }
 
-.new_task a{
+.new_task a,
+.new_task span{
 	color:#FFF;
 	font-size:45px;
 	vertical-align:middle;
