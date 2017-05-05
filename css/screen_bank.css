@@ -14,6 +14,20 @@
 	background:#252525;
 	border-radius:10px;
 	height:8%;
+	color:#FFF;
+	font-size:50px;
+	padding:30px;
+	box-sizing:border-box;
+}
+
+.save span{
+	vertical-align:middle;
+}
+
+.save span.num{
+	float:right;
+	vertical-align:middle;
+	height:100%;
 }
 
 .tasklist{
@@ -80,10 +94,14 @@
 	background:#78cc33;
 	width:100%;
 	height:100%;
+	-webkit-transition: opacity 2s ease-in;
+    -moz-transition: opacity 2s ease-in;
+    -o-transition: opacity 2s ease-in;
+    -ms-transition: opacity 2s ease-in;
+    transition: opacity 2s ease-in;
 }
 
 .bar .full .perc{
-	height:30%;
 	background:#4a4a4a;
 	bottom:0;
 }
