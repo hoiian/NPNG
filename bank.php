@@ -3,6 +3,14 @@
 require_once("func.php");
 $dbh = my_pdo();
 $sth = $dbh->query("SELECT * FROM  `task` WHERE  `status` !=2 order by id desc");
+
+$sth1 = $dbh->prepare(" SELECT * FROM member WHERE id=:id ");
+$sth1->bindParam(":id", $_SESSION['id'] );
+$sth1->execute();
+$member = $sth1->fetch();
+$savemoney = $member['savemoney'];
+$percentage = (1 - ($savemoney/2000))*100;
+
 function iconpath($type){
 	switch($type){
 	case a: $icon = "o_flower.png.png"; break;
@@ -28,6 +36,9 @@ function iconpath($type){
 <link rel="icon" href="img/icon.ico" />
 <link href="css/sceen.css" rel="stylesheet" type="text/css" />
 <link href="css/screen_bank.css" rel="stylesheet" type="text/css" />
+<?php if( has_role('child') ): ?>
+<link href="css/child.css" rel="stylesheet" type="text/css" />
+<?php endif; ?>
 </head>
 
 <body>
@@ -48,12 +59,12 @@ function iconpath($type){
 	<a href="logout.php" class="button" align="center">登出</a>
     
 	    <div class="save">
-        <p>目前存款:</p>
-        <p>$2,000</p>
+        <div class="nothing"></div>
+        <span class="tit">目前存款：</span>
+        <span class="num">$<?php echo $savemoney; ?>.00</span>
         </div>
         
         <div class="tasklist">
-        
         <div class="tit"><div class="nothing"></div>未完成任務</div>
         <ul>
             <?php 
@@ -73,10 +84,10 @@ function iconpath($type){
             <?php }} while($row) ?>   
           </ul>
         </div>
-        
+
         <div class="bar">
         	<div class="full">
-            	<div class="perc"></div>
+            	<div class="perc" style="height:<?=$percentage?>%;"></div>
             </div>
         </div>
 

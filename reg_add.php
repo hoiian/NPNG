@@ -13,6 +13,8 @@ if( isset($_POST['reg_submit']) ){
 	$role = trim($_POST['role']);
 	$name = trim($_POST['name']);
 	$matchuser = trim($_POST['matchuser']);
+	$savemoney = 0;
+	if($role == "parent") $savemoney = 2000;
 	/* validation */
 	if( $userid =="" ){
 		$error .= "帳號不能留空<br/>";
@@ -56,17 +58,22 @@ if( isset($_POST['reg_submit']) ){
 		    $error .= "file move fail";
 		}
 	}
+	
+	$savemoney = 0;
+	if($role == "parent") $savemoney = 2000;
+	
 /*		 insert into db if no error */
 	if($error ==""){
 		$dbh = my_pdo();
-		$sth = $dbh->prepare("INSERT INTO member(userid,password,name,role,matchuser,profilepic)
-										 VALUES(:userid,:password,:name,:role,:matchuser,:profilepic) ");
+		$sth = $dbh->prepare("INSERT INTO member(userid,password,name,role,matchuser,profilepic,savemoney)
+										 VALUES(:userid,:password,:name,:role,:matchuser,:profilepic,:savemoney) ");
 		$sth->bindParam(":userid", $userid );
 		$sth->bindParam(":password", $password );
 		$sth->bindParam(":name", $name );
 		$sth->bindParam(":role", $role );
 		$sth->bindParam(":matchuser", $matchuser );
 		$sth->bindParam(":profilepic", $profilepic );
+		$sth->bindParam(":savemoney", $savemoney );
 		$rtn = $sth->execute();
 		if($rtn){
 			$pass = "註冊成功";

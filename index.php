@@ -22,13 +22,6 @@ if( isset($_POST['login_submit']) ){
   $password = trim($_POST['password']);
 
   /* validation */
-  if( $userid =="" ){
-    $error .= "使用者名稱不能留空<br/>";
-  }
-  if( $password =="" ){
-    $error .= "密碼不能留空<br/>";
-  }
-
   $user = db_get_user($userid,$password);
   if( !$user ){
     $error .= "抱歉，使用者或密碼錯誤<br/>";
@@ -41,6 +34,7 @@ if( isset($_POST['login_submit']) ){
     $_SESSION['matchuser'] = $user['matchuser'];
 	$_SESSION['id'] = $user['id'];
 	$_SESSION['profilepic'] = $user['profilepic'];
+	$_SESSION['savemoney'] = $user['savemoney'];
     $pass="成功登入，歡迎！";
   }
 }
@@ -60,11 +54,11 @@ if( isset($_POST['login_submit']) ){
         
 		<form action="index.php" method="post">
               <div class="form_group">
-                <input type="text" class="text" id="userid" name="userid" value="<?php P('userid');?>" placeholder="帳號(電話號碼)"/>
+                <input type="text" class="text" id="userid" name="userid" value="<?php P('userid');?>" placeholder="帳號(電話號碼)"  <?php if( isset($userid) && $userid =="" ): ?> style="border:2px #fba415 solid;" <?php endif; ?>/>
               </div>
               
               <div class="form_group">
-                <input type="password" class="text" id="password" name="password" placeholder="密碼"/>
+                <input type="password" class="text" id="password" name="password" placeholder="密碼"  <?php if( isset($password) && $password =="" ): ?> style="border:2px #fba415 solid;" <?php endif; ?>/>
               </div>
         
               <input type="submit" class="btn btn-primary" name="login_submit" value="登入"/>

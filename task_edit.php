@@ -72,17 +72,11 @@ if( isset($_POST['task_submit']) ){
     <?php } ?>
 	<form action="task_edit.php?id=<?php echo $task['id']?>" method="post">
         
-        <div class="form_row">
-			到期日期：<br/><input type="date" class="t" name="task_deadline" value="<?php P('task_created_at', $task['deadline']); ?>"/>
-		</div>
         
 		<div class="form_row">
 			標題：<br/><input type="text" class="t" name="task_title" value="<?php P('task_title', $task['title']); ?>"/>
 		</div>
         
-		<div class="form_row">
-			內容：<br/><textarea name="task_content"><?php P( 'task_content', $task['post']) ; ?>	</textarea>
-		</div>
         
         <div class="form_row">
 			獎勵：<br/><input type="text" class="t" name="money" value="<?php P('money', $task['money']); ?>"/>

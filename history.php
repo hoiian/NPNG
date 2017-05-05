@@ -28,6 +28,9 @@ function iconpath($type){
 <title>歷史記錄</title>
 <link href="css/sceen.css" rel="stylesheet" type="text/css" />
 <link href="css/screen_history.css" rel="stylesheet" type="text/css" />
+<?php if( has_role('child') ): ?>
+<link href="css/child.css" rel="stylesheet" type="text/css" />
+<?php endif; ?>
 </head>
 
 <body>
@@ -57,7 +60,7 @@ function iconpath($type){
                     
                     <span class="title"><?php echo $row['title'] ?></span><br/>
                     <span class="money"><?php echo $row['money'] ?>元</span> <br/>
-                    <span class="time"><?php echo date("Y-m-d h:i A",strtotime($row['created_at'])) ?></span>
+                    <span class="time"><?php echo date("Y-m-d h:i A",strtotime($row['last_active'])) ?></span>
                     
             </li>
             <?php } } while($row) ?>   
