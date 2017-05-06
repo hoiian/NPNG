@@ -9,5 +9,9 @@
 }
 
 .header .title{  
-	color:#78cc33;
+	color:#6d9339;
+}
+
+.header .title .right{
+	background-image:url(../img/ic_settings_black_kid.png);
 }

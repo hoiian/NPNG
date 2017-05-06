@@ -107,11 +107,12 @@ input[name$="login_submit"] {
 
 .header .title .right{
     float:right;
-	height:4.5vh;
-    width:auto;
+	height:84px;
+    width:84px;
 	position:relative;
 	top:-4.5vh;
 	right:2vh;
+	background-image:url(../img/ic_settings.png);
 }
 
 .header ul{
