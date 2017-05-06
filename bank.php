@@ -1,6 +1,8 @@
 <html>
 <?php 
 require_once("func.php");
+require_role('parent');
+require_role('child');
 $dbh = my_pdo();
 $sth = $dbh->query("SELECT * FROM  `task` WHERE  `status` !=2 order by id desc");
 
@@ -47,7 +49,7 @@ function iconpath($type){
         <div class="title">
             <p>急速家事</p>
             <div class="nothing"></div>
-            <a href="profile.php" class="right" ><img src="img/ic_settings.png" alt="setting"></a>
+            <a href="profile.php" class="right" ></a>
         </div>
         
         <ul>

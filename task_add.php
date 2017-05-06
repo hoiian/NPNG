@@ -71,7 +71,7 @@ if( isset($_POST['task_submit']) ){
         	
             <p>新任務</p>
             <div class="nothing"></div>
-            <a href="bank.php" class="right"><img src="img/ic_back.png"></a>
+            <a href="bank.php" class="right"></a>
         </div>
 	</div>
 

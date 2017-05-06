@@ -39,7 +39,7 @@ function iconpath($type){
 	<div class="header">
         <div class="title">
             <p>急速家事</p>
-            <a href="profile.php" class="right"><img src=img/ic_settings.png alt="setting"></a>
+            <a href="profile.php" class="right"></a>
         </div>
         
         <ul>
