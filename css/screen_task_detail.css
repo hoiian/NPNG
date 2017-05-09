@@ -9,9 +9,44 @@
 .detail .info {
 	margin-top:20%;
 	box-sizing:border-box;
-	padding:5%
+	padding:5%;
+	font-size:2.5vh;
 }
 
-.detail .info p{
-	font-size:24px;
+
+.info img[alt$=taskicon]{
+	width:60px;
+	height:auto;
+}
+
+.info .pro{
+	padding:5%;
+	box-sizing:border-box;
+	height:20%;
+}
+
+.info .pro div{
+	width:50%;
+	float:left;
+	text-align:center;
+}
+.info .pro .name{
+	margin:0 auto;
+	width: 100%;
+}
+.info .pro img{
+	width:200px;
+	height:auto;
+	border-radius:100px;
+}
+
+.info span.title{
+  color:#de000000;
+
+}
+.info span.time{
+  color:#8b000000;
+
+}
+.info span.money{
 }

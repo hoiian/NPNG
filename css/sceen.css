@@ -102,17 +102,64 @@ input[name$="login_submit"] {
     background-color: #ffffff;
     padding:2.5vh 0;
     vertical-align: middle;
-
+	border-bottom: #bdbdbd 2px solid;
 }
 
-.header .title .right{
+.header .title .setting{
     float:right;
-	height:84px;
-    width:84px;
-	position:relative;
-	top:-4.5vh;
+	height:90px;
+    width:90px;
+	position:absolute;
+	top:6.5vh;
 	right:2vh;
 	background-image:url(../img/ic_settings.png);
+	background-repeat:no-repeat;
+}
+
+.header .home{
+	position:absolute;
+	top:6.5vh;
+	left:2vh;
+	background-image:url(../img/ic_back.png);
+	background-repeat:no-repeat;
+	width:100px;
+	height:100px;
+}
+
+.header .logout{
+    float:right;
+	height:85px;
+    width:85px;
+	position:absolute;
+	top:6.5vh;
+	right:2vh;
+	background-image:url(../img/logout.png);
+	background-size:100%;
+	background-repeat:no-repeat;
+}
+
+.header .edit{
+    float:right;
+	height:85px;
+    width:85px;
+	position:absolute;
+	top:6.5vh;
+	right:8vh;
+	background-image:url(../img/edit.png);
+	background-size:100%;
+	background-repeat:no-repeat;
+}
+
+.header .del{
+    float:right;
+	height:85px;
+    width:85px;
+	position:absolute;
+	top:6.5vh;
+	right:2vh;
+	background-image:url(../img/del.png);
+	background-size:100%;
+	background-repeat:no-repeat;
 }
 
 .header ul{

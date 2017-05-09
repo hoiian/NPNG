@@ -2,30 +2,13 @@
   margin: 0px;
 }
 
-.passage h1 {
-  margin-top: 4%;
-  margin-bottom: 4%;
-  font-size: 60px;
-  text-align: center;
-  color: #37bde5;
-}
-
-.passage {
-  width: 100%;
-}
-
-.header {
-  border-bottom: solid;
-  border-color: #bdbdbd;
-}
-
-.return {
-  position: fixed;
-  top: 0;
-  left: 0;
-  margin-top: 2%;
-  margin-left: 2%;
-  height: inherit;
+.reg {
+  background-color: #f2f2f2;
+  width:100%;
+  padding:5%;
+  padding-bottom:20%;
+  box-sizing:border-box;
+  margin-top:22%;
 }
 
 .submit {
@@ -44,31 +27,21 @@
   border: none;
   text-align: center;
   background-color: #37bde5;
+   color:#FFF;
 }
 
-.form_row label, .form_row input:not(#role) {
+.form_row label, 
+.form_row input[type$=text],
+.form_row input[type$=password] {
   display: block;
   font-size: 60px;
   border: none;
   font-weight: bold;
   margin-top: 1.5%;
-}
-
-.news_edit:not(.submit) {
-  background-color: #f2f2f2;
-  width: 92%;
-  margin-left: 0px;
-  padding-left: 4%;
-  padding-right: 4%;
-  padding-top: 1%;
-  padding-bottom: 15%;
-}
-
-.form_row input:not(#role) {
   width: 100%;
-  outline: none;
-  padding: 30px;
+  padding: 20px;
 }
+
 
 input[type=radio] {
   margin-top: 1.5%;

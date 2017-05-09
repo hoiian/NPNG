@@ -4,7 +4,8 @@
 .header,
 .header ul,
 .header ul li,
-.btn_bottom {
+.btn_bottom,
+.profile .bg{
     background-color:#78cc33;
 }
 
@@ -12,6 +13,18 @@
 	color:#6d9339;
 }
 
-.header .title .right{
+.header .title .setting{
 	background-image:url(../img/ic_settings_black_kid.png);
+	margin:0;
+}
+.header .home{
+	background-image:url(../img/ic_back_k.png);
+}
+
+.header .logout{
+	background-image:url(../img/logout_kid.png);
+}
+
+.header .edit{
+	background-image:url(../img/edit_kid.png);
 }

@@ -24,9 +24,11 @@ input.money {
   width: 100vw;
   color: #78cc33;
   background: #666;
-  height: 15%;
-  font-size: 50px;
+  height: 13%;
+  font-size: 80px;
+  font-weight:bold;
   text-align: center;
+  margin-top:100px;
 }
 
 .tasktype{
@@ -45,6 +47,7 @@ input.money {
   height: 18%;
 	background-size:100% auto;
     margin: 0px auto;
+	padding-top: 250px;
 
 }
 /*
@@ -233,6 +236,11 @@ input[name$="task_submit"]{
 	background-image:url(../img/ic_save.png);
 	background-size:100% auto;
 	border:0;
-	width:70px;
-	height:70px;
+	width:80px;
+	height:80px;
+	float:right;
+	position:absolute;
+	top:6.5vh;
+	right:2vh;
+	z-index:3;
 }
