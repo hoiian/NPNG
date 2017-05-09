@@ -15,6 +15,10 @@ $taskimg = $row['img'];
 //function changedimg(){
 //	return (strcmp($taskimg,"Taskphoto/incomplete.png") == 0) ? 0 : 1;
 //}
+$st = $dbh->prepare(" SELECT * FROM member WHERE id=:id ");
+$st->bindParam(":id", $_SESSION['id'] );
+$st->execute();
+$member = $st->fetch();
 
 $matuid = $_SESSION['matchuser'];
 $sth1 = $dbh->query("SELECT * FROM `member` WHERE userid='$matuid'");
@@ -72,9 +76,9 @@ if( isset($_POST['finish_submit']) ){
 		$rtn1 = $sth1->execute();
 		// - money
 		$uid = $_SESSION['id'];
-		$_SESSION['savemoney'] = $_SESSION['savemoney'] - $row['money'];
+		$member['savemoney'] = $member['savemoney'] - $row['money'];
 		$sth3 = $dbh->prepare(" UPDATE member SET savemoney=:savemoney WHERE id='$uid' ");
-		$sth3->bindParam(":savemoney", $_SESSION['savemoney'] );
+		$sth3->bindParam(":savemoney", $member['savemoney'] );
 		$rtn3 = $sth3->execute();
 		//get the kids info and add money to kid's account
 		$matuid = $_SESSION['matchuser'];
@@ -131,8 +135,8 @@ if( isset($_POST['finish_submit']) ){
     <div class="info">
     <div class="pro">
     	<div class="left">
-            <img src="<?php echo $_SESSION['profilepic'];?>" alt="profilepic">
-            <div class="name"><?php echo $_SESSION['name']; ?></div>
+            <img src="<?php echo $member['profilepic'];?>" alt="profilepic">
+            <div class="name"><?php echo $member['name']; ?></div>
     	</div>
         <div class="right">
     		<?php	
@@ -190,12 +194,12 @@ if( isset($_POST['finish_submit']) ){
                   
                   <?php if( has_role('parent') ): ?>
                   <form action="task_detail.php?id=<?php echo $bid ?>" method="post">
-                  <input type="submit" name="finish_submit" value="付款"/>
+                  <?php if( $status ==  1 ): ?><input type="submit" name="finish_submit" value="付款"/><?php endif; ?>
                   
                   <div class="btn_bottom" <?php if( $status != 1 ): ?>style="background:#9B9B9B;"<?php endif; ?>>
                       <div class="nothing"></div>
                       <span>
-                      <?php if( $status ==1 ): ?><a href="bank.php"><?php endif; ?>
+                      <?php if( $status ==  1 ): ?><a href="bank.php"><?php endif; ?>
 						  <?php
                           switch($status){
                               case 0: echo "付款"; break;

@@ -100,8 +100,8 @@ if( isset($_POST['edit_submit']) ){
        
         <div class="profile">
         	<div class="bg">
-                <div class="icon"><img src="<?php echo $_SESSION['profilepic'];?>" alt="profilepic"></div>
-                <span> <?php echo $_SESSION['name'];?></span>
+                <div class="icon"><img src="<?php echo $member['profilepic'];?>" alt="profilepic"></div>
+                <span> <?php echo $member['name'];?></span>
             </div>
 
             <div class="profile_form">
@@ -141,9 +141,9 @@ if( isset($_POST['edit_submit']) ){
 			<label for="profilepic">頭貼：</label>
       <input type="file" accept="image/*" capture="camera" id="file" name="file"/>
     </div>
-	<div class="submit">
+<!--	<div class="submit">
 		<input type="submit" name="edit_submit" value="確認送出"/>
-	</div>
+	</div>-->
 	</form>
             </div>
 		</div>

@@ -65,7 +65,7 @@ function startsWith($haystack, $needle)
 
 function iconpath($type){
 	switch($type){
-	case a: $icon = "o_flower.png.png"; break;
+	case a: $icon = "o_flower.png"; break;
 	case b: $icon = "o_tree.png"; break;
 	case c: $icon = "o_car_wash.png"; break;
 	case d: $icon = "o_drink.png"; break;
