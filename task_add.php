@@ -71,7 +71,7 @@ if( isset($_POST['task_submit']) ){
         	
             <p>新任務</p>
             <div class="nothing"></div>
-            <a href="bank.php" class="right"></a>
+            <a href="bank.php" class="home"></a>
         </div>
 	</div>
 
@@ -83,10 +83,10 @@ if( isset($_POST['task_submit']) ){
 			<input type="number" class="money" name="money" pattern="\d*" value="<?php P('money'); ?>"/>
 		</section>
         
-        <div>
+<!--        <div>
        <input id="text1" readonly="readonly" type="number" style="height:28px;width:98%;outline:none;border:1px solid #1AB6FF;padding-left:3px;"/> <br />
      	</div>
-  
+  -->
         <section class="tasktype">
 		<input type="radio" name="type" id="a" value="a">
         <label class="a" for="a">澆花</label>

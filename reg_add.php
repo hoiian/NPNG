@@ -1,6 +1,7 @@
 <html>
 <meta name="viewport" content="width=device-width; initial-scale=0.3; maximum-scale=0.3; user-scalable=0;">
 <link href="css/screen_reg_add.css" rel="stylesheet" type="text/css" />
+<link href="css/sceen.css" rel="stylesheet" type="text/css" />
 <?php
 require_once ("func.php");
 $error = "";
@@ -98,16 +99,12 @@ if( isset($_POST['reg_submit']) ){
 <div>
   <div class="content">
 
-    <div class="words">
-    </div>
-    <div class="passage">
 		<div class="header">
     	<h1 class="title">急速家事新會員註冊</h1>
-			<div class="return">
-			<a href="index.php"><img src="img/arrow.png" alt="back" border="0"></a>
-		 </div>
+		<a href="index.php" class="home"></a>
 		</div>
-    <div class="news_edit">
+        
+    <div class="reg">
     <?php if($pass){ ?>
      	<div class="pass"><?php echo $pass ?></div>
     <?php } ?>
@@ -141,6 +138,7 @@ if( isset($_POST['reg_submit']) ){
 
 		<div class="form_row role">
 			<label for="role">身份：</label> <br/>
+            
             <input type="radio" name="role" id="parent" value="parent"
 						<?php  if( isset($_POST['role']) && $_POST['role'] == "parent") echo "checked";?>>
 						<label for="parent" style="font-size: 60px; display:inline;">父母</label>
@@ -155,12 +153,11 @@ if( isset($_POST['reg_submit']) ){
       <input type="file" accept="image/*" capture="camera" id="file" name="file"/>
     </div>
 	<div class="submit">
-		<input type="submit" name="reg_submit" value="Submit"/>
+		<input type="submit" name="reg_submit" value="確認送出"/>
 	</div>
 	</form>
   </div>
-</div>
-</div>
+  
 </div>
 
 

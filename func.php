@@ -63,5 +63,21 @@ function startsWith($haystack, $needle)
      return (substr($haystack, 0, $length) === $needle);
 }
 
-
+function iconpath($type){
+	switch($type){
+	case a: $icon = "o_flower.png.png"; break;
+	case b: $icon = "o_tree.png"; break;
+	case c: $icon = "o_car_wash.png"; break;
+	case d: $icon = "o_drink.png"; break;
+	case e: $icon = "o_sofa.png"; break;
+	case f: $icon = "o_paint.png"; break;
+	case g: $icon = "o_tea.png"; break;
+	case h: $icon = "o_cleardesk.png"; break;
+	case i: $icon = "o_food.png"; break;
+	case j: $icon = "o_restaurant.png"; break;
+	case k: $icon = "o_carebaby.png"; break;
+	case l: $icon = "o_bike.png"; break;
+	}
+	echo $icon;
+}
 ?>

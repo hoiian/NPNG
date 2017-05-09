@@ -1,6 +1,8 @@
 <html>
 <?php 
 require_once("func.php");
+require_role('parent');
+require_role('child');
 $dbh = my_pdo();
 $bid = $_GET['id'];
 $sth = $dbh->query("SELECT * FROM `task` WHERE id='$bid'");
@@ -9,9 +11,15 @@ $row = $sth->fetch();
 
 $status = $row['status'];
 $taskimg = $row['img'];
-function changedimg(){
-	return (strcmp($taskimg,"Taskphoto/incomplete.png") == 0) ? 0 : 1;
-}
+
+//function changedimg(){
+//	return (strcmp($taskimg,"Taskphoto/incomplete.png") == 0) ? 0 : 1;
+//}
+
+$matuid = $_SESSION['matchuser'];
+$sth1 = $dbh->query("SELECT * FROM `member` WHERE userid='$matuid'");
+$sth1->execute();
+$match = $sth1->fetch();
 
 $error = "";
 $pass = "";
@@ -111,25 +119,39 @@ if( isset($_POST['finish_submit']) ){
         <div class="title">
             <p>任務</p>
             <div class="nothing"></div>
-            <a href="index.php">首頁</a>
+            <a href="index.php" class="home"></a>
             <?php if( has_role('parent') && $status!=2): ?>
-            <a href="task_edit.php?id=<?php echo $row['id'];?>" >編輯</a>
-            <a onClick="return confirm('確認刪除？');" href="task_delete.php?id=<?php echo $row['id'];?>">刪除</a>
+            <a href="task_edit.php?id=<?php echo $row['id'];?>" class="edit"></a>
+            <a onClick="return confirm('確認刪除？');" href="task_delete.php?id=<?php echo $row['id'];?>" class="del"></a>
             <?php endif; ?>
         </div>
      </div>
      
      
-    <div class="info">    
-        <?php if ( has_session() ): ?>
-	使用者：<?php echo $_SESSION['name']; ?>
-	身份：<?php echo $_SESSION['role']; ?>
-	<?php endif ?>
-        <p class="time"><?php echo $row['last_active'] ?></p>
-        <p class="title"><?php echo $row['title'] ?></p>
-		<p class="money"><?php echo $row['money'] ?></p>
+    <div class="info">
+    <div class="pro">
+    	<div class="left">
+            <img src="<?php echo $_SESSION['profilepic'];?>" alt="profilepic">
+            <div class="name"><?php echo $_SESSION['name']; ?></div>
+    	</div>
+        <div class="right">
+    		<?php	
+                if( $matuid != "00") :?>
+                <img src="<?php echo $match['profilepic'];?>" alt="profilepic_matchuser">
+				<div class="name"><?php echo $match['name'];?></div>
+                <?php endif;
+				if( $matuid == "00") echo "你還沒配對喔";
+				?>
+		</div>
+	</div>
+    	
+    	<img src="img/<?php iconpath($row['type']);?>" alt="taskicon"/>  
+        <span class="title"><?php echo $row['title'] ?></span> / 
+        <span class="money"><?php echo $row['money'] ?>元</span> <br/>
+        <span class="time"><?php echo date("Y-m-d h:i A",strtotime($row['last_active'])) ?></span>
+        
 		<div align="center">
-       		<img src="<?php echo $row['img'] ?>" width="600" height="auto" />
+       		<img src="<?php echo $row['img'] ?>" width="100%" height="auto" />
 		</div>
         
                     <?php if( has_role('child') ): ?>
