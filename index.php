@@ -35,6 +35,8 @@ if( isset($_POST['login_submit']) ){
 	$_SESSION['id'] = $user['id'];
 	$_SESSION['profilepic'] = $user['profilepic'];
 	$_SESSION['savemoney'] = $user['savemoney'];
+	$_SESSION['group'] = $user['group'];
+	$_SESSION['score'] = $user['score'];
     $pass="成功登入，歡迎！";
   }
 }
@@ -54,7 +56,7 @@ if( isset($_POST['login_submit']) ){
         
 		<form action="index.php" method="post">
               <div class="form_group">
-                <input type="text" class="text" id="userid" name="userid" value="<?php P('userid');?>" placeholder="帳號(電話號碼)"  <?php if( isset($userid) && $userid =="" ): ?> style="border:2px #fba415 solid;" <?php endif; ?>/>
+                <input type="text" class="text" id="userid" name="userid" value="<?php P('userid');?>" placeholder="帳號"  <?php if( isset($userid) && $userid =="" ): ?> style="border:2px #fba415 solid;" <?php endif; ?>/>
               </div>
               
               <div class="form_group">

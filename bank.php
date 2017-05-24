@@ -38,6 +38,7 @@ $percentage = (1 - ($savemoney/2000))*100;
         <ul>
             <li style="border-bottom:#FFFF8C 3px solid">存款</li>
             <li><a href="history.php">完成任務</a></li>
+            <li><a href="social.php">社群</a></li>
         </ul>
 	</div>
         

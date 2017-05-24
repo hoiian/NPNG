@@ -29,15 +29,14 @@ $sth = $dbh->query("SELECT * FROM  `task` WHERE  `status` =2 order by id desc");
         <ul>
             <li><a href="bank.php">存款 </a></li>
             <li style="border-bottom:#FFFF8C 3px solid">完成任務</li>
+            <li><a href="social.php">社群</a></li>
         </ul>
 	</div>
     
 <div class="history">
         <div class="tasklist">
         <ul>
-            <?php 
-			
-            do{ $row = $sth->fetch(); if($row){?>
+            <?php do{ $row = $sth->fetch(); if($row){?>
             <a href="task_detail.php?id=<?php echo $row['id'] ?>">
             <li>
 					<img src="img/<?php iconpath($row['type']);?>" alt="taskicon"/><br/>

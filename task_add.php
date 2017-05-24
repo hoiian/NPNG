@@ -28,6 +28,8 @@ if( isset($_POST['task_submit']) ){
 		$error .= "獎勵不能留空<br/>";
 	}else if($money<=0){
 		$error .= "獎勵要為正數<br/>";
+	}else if($money>=$_SESSION['savemoney']){
+		$error .= "存款不夠<br/>";
 	}
 	
 	if($error ==""){

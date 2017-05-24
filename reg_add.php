@@ -21,11 +21,13 @@ if( isset($_POST['reg_submit']) ){
 		$error .= "帳號不能留空<br/>";
 	}elseif( db_record_exists('users','userid',$userid) ){
 		$error .= "帳號已有人使用<br/>";
-	}elseif( strlen($userid)!=10 || !is_numeric($userid) ){
-		$error .= "這不是正確的電話號碼喔<br/>";
-	}elseif( !startsWith($userid, '09') ){
-		$error .= "這不是09開頭的電話號碼喔<br/>";
 	}
+//	elseif( strlen($userid)!=10 || !is_numeric($userid) ){
+//		$error .= "這不是正確的電話號碼喔<br/>";
+//	}elseif( !startsWith($userid, '09') ){
+//		$error .= "這不是09開頭的電話號碼喔<br/>";
+//	}
+	
 	if( $name =="" ){
 		$error .= "名字不能留空<br/>";
 	}
@@ -39,9 +41,10 @@ if( isset($_POST['reg_submit']) ){
 	if( $role !="parent" && $role != "child" ){
 		$error .= "身份不能留空<br/>";
 	}
-		if( $matchuser =="" ){
-		$error .= "配對者不能留空<br/>";
-	}elseif( !db_record_exists('users','userid',$matchuser) && $matchuser !="00" ){
+	if( $matchuser =="" ){
+		$matchuser = "0";
+	}
+	if( !db_record_exists('users','userid',$matchuser) && $matchuser !="0"  ){
 		$error .= "沒有該配對者<br/>";
 	}
 		if( empty($_FILES['file']['name']) ){
@@ -115,29 +118,29 @@ if( isset($_POST['reg_submit']) ){
 
 	<form enctype="multipart/form-data" action="reg_add.php" method="post">
 		<div class="form_row">
-			<label for="userid">帳號：</label>
-			<input type="text" id="userid" name="userid" value="<?php P('userid'); ?>" placeholder="手機號碼"/>
+			<label for="userid">帳號：*</label>
+			<input type="text" id="userid" name="userid" value="<?php P('userid'); ?>" />
 		</div>
 		<div class="form_row">
-			<label for="password">密碼：</label>
+			<label for="password">密碼：*</label>
 			<input type="password" id="password" name="password" value="<?php P('password'); ?>"/>
 		</div>
         <div class="form_row">
-			<label for="password1">確認密碼：</label>
+			<label for="password1">確認密碼：*</label>
 			<input type="password" id="password1" name="password1" value="<?php P('password1'); ?>"/>
 		</div>
 		<div class="form_row">
-			<label for="name">名字：</label>
+			<label for="name">名字：*</label>
 			<input type="text" id="name" name="name" value="<?php P('name'); ?>"/>
 		</div>
 
 		<div class="form_row">
 			<label for="matchuser">配對者帳號：</label>
-			<input placeholder="對方還沒有帳號請先輸入00" type="text" id="matchuser" name="matchuser" value="<?php P('matchuser'); ?>"/>
+			<input type="text" id="matchuser" name="matchuser" value="<?php P('matchuser'); ?>"/>
 		</div>
 
 		<div class="form_row role">
-			<label for="role">身份：</label> <br/>
+			<label for="role">身份：*</label> <br/>
             
             <input type="radio" name="role" id="parent" value="parent"
 						<?php  if( isset($_POST['role']) && $_POST['role'] == "parent") echo "checked";?>>
