@@ -1,15 +1,10 @@
 <html>
 <?php 
 require_once("func.php");
-
+$grp = $_GET['group'];
 $dbh = my_pdo();
-$grp = $_SESSION['group'];
-$sth = $dbh->query("SELECT * FROM  `member` WHERE  `group` LIKE  '$grp' AND  `role` LIKE  'child' ORDER BY  `member`.`score` DESC ");
-
-$sth1 = $dbh->query("SELECT DISTINCT `group` 
-FROM  `member` 
-WHERE  `group` NOT LIKE  '$grp'");
-
+//$grp = $_SESSION['group'];
+$sth = $dbh->query("SELECT * FROM  `task` WHERE  `group` LIKE  '$grp' AND `status` =2 order by id desc");
 
 ?>
 
@@ -40,33 +35,21 @@ WHERE  `group` NOT LIKE  '$grp'");
 	</div>
     
 <div class="social">
-	<div class="member">
-    <a href="social_timeline.php?group=<?php echo $grp ?>">
-    <?php echo $grp;?>群組</a>的小孩排行榜:
+	<div class="timeline">
+    
+    <?php echo $grp;?>群組的完成的任務有:
         <ul>
             <?php do{ $row = $sth->fetch(); if($row){?>
             <li>
-                    <span class="title"><?php echo $row['name'] ?></span>
-                    / 分數:<span class="score"><?php echo $row['score'] ?></span><br/>
+                    <img src="<?php echo $row['img'];?>" alt="taskphoto" width="100%" height="auto"/><br/>
+                    家長帳號:<span class="parent"><?php echo $row['parent'] ?></span><br/>
+                    小孩帳號:<span class="child"><?php echo $row['child'] ?></span><br/>
+                    任務名稱:<span class="child"><?php echo $row['title'] ?></span><br/>
             </li>
             <?php } } while($row) ?>   
           
           </ul>
      
-      </div>
-      
-      <div class="other">
-      其他群組:
-          <ul>
-            <?php do{ $row1 = $sth1->fetch(); if($row1){?>
-             <a href="social_timeline.php?group=<?php echo $row1['group'] ?>">
-            <li>
-                    <span class="title"><?php echo $row1['group'] ?></span>
-            </li>
-            </a>
-            <?php } } while($row1) ?>   
-          
-          </ul>
       </div>
 
 </div>

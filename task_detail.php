@@ -55,8 +55,9 @@ if( isset($_POST['taskphoto_submit']) ){
 		$child = $_SESSION['userid'];
 		$img = $target_path;
 		
-		$sth2 = $dbh->prepare(" UPDATE task SET img=:img, status='1' WHERE id='$bid' ");
+		$sth2 = $dbh->prepare(" UPDATE task SET img=:img, status='1' ,child=:child WHERE id='$bid' ");
 		$sth2->bindParam(":img", $img );
+		$sth2->bindParam(":child", $child );
 		$rtn = $sth2->execute();
 		if($rtn){
 			$pass = "成功上傳";
