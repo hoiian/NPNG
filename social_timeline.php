@@ -23,21 +23,20 @@ $sth = $dbh->query("SELECT * FROM  `task` WHERE  `group` LIKE  '$grp' AND `statu
 
 	<div class="header">
         <div class="title">
-            <p>急速家事</p>
+            <p><?php echo $grp;?>家急速任務</p>
             <a href="profile.php" class="setting"></a>
+            <a href="social.php" class="home"></a>
         </div>
         
-        <ul>
+      <!--  <ul>
             <li><a href="bank.php">存款</a></li>
             <li><a href="history.php">完成任務</a></li>
             <li style="border-bottom:#FFFF8C 3px solid">社群</li>
-        </ul>
+        </ul>-->
 	</div>
     
 <div class="social">
 	<div class="timeline">
-    
-    <?php echo $grp;?>群組的完成的任務有:
         <ul>
             <?php do{ $row = $sth->fetch(); if($row){?>
             <li>

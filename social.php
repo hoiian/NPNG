@@ -40,23 +40,25 @@ WHERE  `group` NOT LIKE  '$grp'");
 	</div>
     
 <div class="social">
-	<div class="member">
-    <a href="social_timeline.php?group=<?php echo $grp ?>">
-    <?php echo $grp;?>群組</a>的小孩排行榜:
+
+	<a href="social_timeline.php?group=<?php echo $grp ?>">
+	<div class="childrank">
+    <?php echo $grp;?>群組的小孩排行榜:
         <ul>
             <?php do{ $row = $sth->fetch(); if($row){?>
             <li>
+            		<img src="<?php echo $row['profilepic'];?>"  width="80px" height="auto" alt="profilepic">
                     <span class="title"><?php echo $row['name'] ?></span>
-                    / 分數:<span class="score"><?php echo $row['score'] ?></span><br/>
+                    /<span class="score"><?php echo $row['score'] ?>分</span><br/>
             </li>
             <?php } } while($row) ?>   
           
           </ul>
-     
       </div>
+      </a>
       
       <div class="other">
-      其他群組:
+     
           <ul>
             <?php do{ $row1 = $sth1->fetch(); if($row1){?>
              <a href="social_timeline.php?group=<?php echo $row1['group'] ?>">
