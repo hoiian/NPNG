@@ -20,7 +20,11 @@
   width: 50%;
   height: 25%;
   float: left;
-  background: #1fb3df;
+  /*background: #1fb3df;*/
+}
+
+.childrank {
+  border-color: #78cc33;
 }
 
 .social ul {
