@@ -20,7 +20,9 @@
   width: 50%;
   height: 25%;
   float: left;
-  /*background: #1fb3df;*/
+  display: flex;
+  align-items: flex-end;
+  /*backgrond: #1fb3df;*/
 }
 
 .childrank {
@@ -33,4 +35,11 @@
 
 .social ul li {
   list-style: none;
+}
+
+.otherdiv {
+  width: 100%;
+  padding: 20px;
+  background-color: #ffffff;
+  opacity: 0.3;
 }

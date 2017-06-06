@@ -62,7 +62,11 @@ WHERE  `group` NOT LIKE  '$grp'");
             <?php do{ $row1 = $sth1->fetch(); if($row1){?>
              <a href="social_timeline.php?group=<?php echo $row1['group'] ?>">
             <li>
+							<div class="otherdiv">
+							<img width="80px" height="80px" alt"profilepic">
+							<!-- add picture here -->
                     <span class="title"><?php echo $row1['group'] ?></span>
+							</div>
             </li>
             </a>
             <?php } } while($row1) ?>
