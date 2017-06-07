@@ -44,8 +44,11 @@ WHERE  `group` NOT LIKE  '$grp'");
 
 	<a href="social_timeline.php?group=<?php echo $grp ?>">
 	<div class="childrank">
-    <?php echo $grp;?>群組的小孩排行榜:
+    <?php echo $grp;?>
         <ul>
+					<li>
+						<span>群組的小孩排行榜:</span>
+					</li>
             <?php do{ $row = $sth->fetch(); if($row){?>
             <li>
             		<img src="<?php echo $row['profilepic'];?>"  width="80px" height="auto" alt="profilepic">
