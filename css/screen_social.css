@@ -12,6 +12,7 @@
   box-sizing: border-box;
   display: flex;
   align-items: flex-end;
+  padding: 25px;
 }
 
 .social .timeline {
@@ -44,4 +45,8 @@
   padding: 20px;
   background-color: #ffffff;
   opacity: 0.3;
+}
+
+.social a {
+  text-decoration: none;
 }
