@@ -78,5 +78,112 @@ if( isset($_POST['login_submit']) ){
    
 <?php endif ;?>
 
+	<!-----------------tutorial------------------------------------->
+	<div id="slide-window">
+  
+		<ol id="slides" start="1">
+		
+		  <li class="slide color-0 alive" style="background-image:url(img/tutorial_1.png);"></li>
+		  
+		  <li class="slide color-1" style="background-image:url(img/tutorial_2.png);"></li>
+		  
+		  <li class="slide color-2" style="background-image:url(img/tutorial_3.png);"></li>
+		
+		</ol>
+	 
+		<span class="arrow" id="left">Back</span>
+		<span class="arrow" id="right">Next</span>
+		<span class="hide" id="hide">立即開始</span>
+		<span class="slide-dot" id="dot1"><img src="img/tutorial_1d.png" width="100%"></span>
+		<span class="slide-dot" id="dot2"><img src="img/tutorial_2d.png" width="100%"></span>
+		<span class="slide-dot" id="dot3"><img src="img/tutorial_3d.png" width="100%"></span>
+    
+	</div>
+
+  <script>
+	 $.global = new Object();
+
+		$.global.item = 1;
+		$.global.total = 0;
+
+		$(document).ready(function() 
+			{
+			
+			var WindowWidth = $(window).width();
+			var SlideCount = $('#slides li').length;
+			var SlidesWidth = SlideCount * WindowWidth;
+			
+		   $.global.item = 0;
+			$.global.total = SlideCount; 
+			
+			$('.slide').css('width',WindowWidth+'px');
+			$('#slides').css('width',SlidesWidth+'px');
+
+		   $("#slides li:nth-child(1)").addClass('alive');
+			
+		  $('#left').click(function() { Slide('back'); }); 
+		  $('#right').click(function() { Slide('forward'); }); 
+
+		  $("#left").hide();
+		  $("#hide").hide();
+		  $("#dot2").hide();
+		  $("#dot3").hide();
+		  });
+
+		function Slide(direction)
+			{
+			
+			if (direction == 'back') { var $target = $.global.item - 1; }
+			if (direction == 'forward') { var $target = $.global.item + 1; }  
+			
+			if ($target == -1) { DoIt($.global.total-1); } 
+			else if ($target == $.global.total) { DoIt(0); }  
+			else { DoIt($target); }
+			
+			if($.global.item==0)  {$("#left").hide();}
+			if($.global.item>0)  {$("#left").show();}
+			
+			if($.global.item== $.global.total-1)  {$("#right").hide();}
+			if($.global.item< $.global.total-1)  {$("#right").show();}
+			
+			if($.global.item== $.global.total-1)  {$("#hide").show();}
+			if($.global.item< $.global.total-1)  {$("#hide").hide();}
+			
+			if($.global.item==0) {$("#dot1").show();
+								  $("#dot2").hide();
+								  $("#dot3").hide();}
+			if($.global.item==1) {$("#dot1").hide();
+								  $("#dot2").show();
+								  $("#dot3").hide();}
+			if($.global.item==2) {$("#dot1").hide();
+								  $("#dot2").hide();
+								  $("#dot3").show();}
+			
+			}
+
+		function DoIt(target)
+		  {
+		   
+			var $windowwidth = $(window).width();
+			var $margin = $windowwidth * target; 
+			var $actualtarget = target+1;
+			
+			$("#slides li:nth-child("+$actualtarget+")").addClass('alive');
+			
+			$('#slides').css('transform','translate3d(-'+$margin+'px,0px,0px)');	
+			
+			$.global.item = target; 
+			
+		  }
+		  
+		  $(document).ready(function(){
+			$("#hide").click(function(){
+				$("#slide-window").hide();
+			});
+			
+		});
+
+	 </script>    
+
 </body>
 </html>
