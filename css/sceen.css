@@ -213,6 +213,94 @@ input[name$="login_submit"] {
 	line-height:inherit;
 	text-decoration:none;
 }
+/*from slide-window to slide-dot is tutorial page*/
+body::-webkit-scrollbar { display: none; }
+
+#slide-window
+  {
+  position:fixed;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  top:0px;
+  left:0px;
+  }
+
+#slides
+  {
+  height:91.7%;  
+  position:absolute;
+  margin:0px;
+  padding:0px;
+  
+  -webkit-transform: translate3d(0px,0px,0px);
+  transform: translate3d(0px,0px,0px);
+    
+  transition: all 0.66s ease; -webkit-transition: all 0.66s ease; 
+  
+  }
+
+.slide 
+  {
+  list-style:none;
+  position: relative;
+  float: left;
+  margin: 0;
+  padding: 0;
+  width: 500px;
+  height: 100%;
+  background: #ccc;
+  text-align: center;
+  line-height: 300px; 
+  background-size: cover; 
+  background-position:50% 50%;
+  color:#fff;
+  -webkit-transform: translate3d(0px,0px,0px);
+  visibility:hidden;
+  -webkit-transform-style: preserve-3d;
+  }
+
+.alive { visibility:visible; }
+
+.arrow
+  { 
+  position:fixed; 
+  z-index:9; 
+  top:93%; 
+  width: 50px;
+  height: 50px;
+  cursor:pointer; 
+  opacity:0.7; 
+  }
+
+.arrow:hover { opacity:1.0; }
+#left 
+  { 
+  left:3%; 
+  font-size: 30px;
+  }
+#right 
+  {
+  right:6%; 
+  font-size: 30px;
+  }
+#hide 
+  { 
+  position: absolute;
+  z-index:9; 
+  top: 94%;
+  right: 3%;
+  height: 10px;
+  font-size: 20px;
+  }
+
+.slide-dot
+{
+  position:absolute; 
+  z-index:8; 
+  top:92%; 
+  width: 100%;
+}
 
 /*-----------------
 .afterlogin{
