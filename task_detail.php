@@ -149,11 +149,11 @@ if( isset($_POST['finish_submit']) ){
 				?>
 		</div>
 	</div>
-    	
+        <span>任務指示</span>
     	<img src="img/<?php iconpath($row['type']);?>" alt="taskicon"/>  
         <span class="title"><?php echo $row['title'] ?></span> / 
         <span class="money"><?php echo $row['money'] ?>元</span> <br/>
-        <span class="time"><?php echo date("Y-m-d h:i A",strtotime($row['last_active'])) ?></span>
+        <span class="time">開始時間<?php echo date("Y-m-d h:i A",strtotime($row['last_active'])) ?></span>
         
 		<div align="center">
        		<img src="<?php echo $row['img'] ?>" width="100%" height="auto" />
