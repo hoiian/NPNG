@@ -50,3 +50,18 @@
 .social a {
   text-decoration: none;
 }
+
+.social .timeline ul li{
+  position: relative;
+}
+
+.social .timeline .whiteBar{
+  position: absolute;
+  padding: 25px;
+  bottom: 0;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  width: 100%;
+  opacity: 0.5;
+}
+
