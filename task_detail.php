@@ -11,17 +11,19 @@ $row = $sth->fetch();
 
 $status = $row['status'];
 $taskimg = $row['img'];
-
+$parent = $row['parent'];
+$child = $row['child'];
 //function changedimg(){
 //	return (strcmp($taskimg,"Taskphoto/incomplete.png") == 0) ? 0 : 1;
 //}
-$st = $dbh->prepare(" SELECT * FROM member WHERE id=:id ");
-$st->bindParam(":id", $_SESSION['id'] );
+
+$st = $dbh->prepare(" SELECT * FROM member WHERE `userid` LIKE  '$parent'");
+//$st->bindParam(":id", $_SESSION['id'] );
 $st->execute();
 $member = $st->fetch();
 
 $matuid = $_SESSION['matchuser'];
-$sth1 = $dbh->query("SELECT * FROM `member` WHERE userid='$matuid'");
+$sth1 = $dbh->query("SELECT * FROM `member` WHERE `userid` LIKE  '$child'");
 $sth1->execute();
 $match = $sth1->fetch();
 
@@ -92,7 +94,14 @@ if( isset($_POST['finish_submit']) ){
 		$sth5->bindParam(":savemoney",$mmoney );
 		$rtn5 = $sth5->execute();
 		
-		if($rtn1 && $rtn3 && $rtn5){
+		$star = $_POST['rg1'];
+		$sscore = $match['score']+$star;
+		$sth6 = $dbh->prepare(" UPDATE member SET score=:score WHERE id='$mid' ");
+		$sth6->bindParam(":score",$sscore );
+		$rtn6 = $sth6->execute();
+		
+		
+		if($rtn1 && $rtn3 && $rtn5 && $rtn6){
 			$pass = "付款成功";
 			unset($_POST);	
 			header('Location: '.$_SERVER['REQUEST_URI']);
@@ -111,6 +120,10 @@ if( isset($_POST['finish_submit']) ){
 <title>任務</title>
 <link href="css/sceen.css" rel="stylesheet" type="text/css" />
 <link href="css/screen_task_detail.css" rel="stylesheet" type="text/css" />
+<!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+<link href="jquery-bar-rating/dist/themes/fontawesome-stars.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="jquery-bar-rating/dist/jquery.barrating.min.js"></script>  -->  
 <?php if( has_role('child') ): ?>
 <link href="css/child.css" rel="stylesheet" type="text/css" />
 <?php endif; ?>
@@ -133,7 +146,7 @@ if( isset($_POST['finish_submit']) ){
      </div>
      
      
-    <div class="info">
+  <div class="info">
     <div class="pro">
     	<div class="left">
             <img src="<?php echo $member['profilepic'];?>" alt="profilepic">
@@ -141,24 +154,35 @@ if( isset($_POST['finish_submit']) ){
     	</div>
         <div class="right">
     		<?php	
-                if( $matuid != "00") :?>
+                //if( $matuid != "00") :?>
                 <img src="<?php echo $match['profilepic'];?>" alt="profilepic_matchuser">
 				<div class="name"><?php echo $match['name'];?></div>
-                <?php endif;
-				if( $matuid == "00") echo "你還沒配對喔";
+                <?php
+				//endif;
+				//if( $matuid == "00") echo "你還沒配對喔";
 				?>
 		</div>
 	</div>
-        <span>任務指示</span>
+    	
     	<img src="img/<?php iconpath($row['type']);?>" alt="taskicon"/>  
         <span class="title"><?php echo $row['title'] ?></span> / 
         <span class="money"><?php echo $row['money'] ?>元</span> <br/>
-        <span class="time">開始時間<?php echo date("Y-m-d h:i A",strtotime($row['last_active'])) ?></span>
+        <span class="time"><?php echo date("Y-m-d h:i A",strtotime($row['last_active'])) ?></span>
         
 		<div align="center">
        		<img src="<?php echo $row['img'] ?>" width="100%" height="auto" />
 		</div>
         
+<!--        <div class="br-wrapper br-theme-fontawesome-stars">
+          <select id="example">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          ...rating widget...
+        </div>   -->        
                     <?php if( has_role('child') ): ?>
                     <!--<p><a href="child_add.php">上傳照片</a></p>-->
                        <?php if($pass){ ?>
@@ -195,6 +219,19 @@ if( isset($_POST['finish_submit']) ){
                   
                   <?php if( has_role('parent') ): ?>
                   <form action="task_detail.php?id=<?php echo $bid ?>" method="post">
+                  <div class="wrapper">
+                    <input type="radio" id="r1" name="rg1" value="1">
+                    <label for="r1">&#9733; </label>
+                    <input type="radio" id="r2" name="rg1" value="2">
+                    <label for="r2">&#9733; </label>
+                    <input type="radio" id="r3" name="rg1" value="3">
+                    <label for="r3">&#9733; </label>
+                    <input type="radio" id="r4" name="rg1" value="4">
+                    <label for="r4">&#9733; </label>
+                    <input type="radio" id="r5" name="rg1" value="5">
+                    <label for="r5">&#9733;</label>
+                    </div>
+                  
                   <?php if( $status ==  1 ): ?><input type="submit" name="finish_submit" value="付款"/><?php endif; ?>
                   
                   <div class="btn_bottom" <?php if( $status != 1 ): ?>style="background:#9B9B9B;"<?php endif; ?>>
@@ -211,7 +248,7 @@ if( isset($_POST['finish_submit']) ){
                       <?php if( $status ==1 ): ?></a><?php endif; ?>
                       </span>
                     </div>
-                    </form>
+  </form>
                   <?php endif; ?> <!--if parent-->
                   
       <div style="clear:both"></div>
@@ -220,3 +257,12 @@ if( isset($_POST['finish_submit']) ){
 
 </body>
 </html>
+
+<script type="text/javascript">
+   $(function() {
+      $('#example').barrating({
+        theme: 'fontawesome-stars'
+      });
+	//  $('select').barrating('show');
+   });
+</script>     
