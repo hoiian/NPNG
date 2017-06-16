@@ -10,7 +10,7 @@
 	margin-top:20%;
 	box-sizing:border-box;
 	padding:5%;
-/*	padding-bottom:10%;*/
+	padding-bottom:10%;
 	font-size:2.5vh;
 }
 
@@ -54,4 +54,21 @@
 
 }
 .info span.money{
+}
+
+.wrapper {
+  display: inline-block;
+}
+.wrapper * {
+  float: right;
+}
+input {
+  display: none;
+}
+label {
+  font-size: 90px;
+}
+
+input:checked ~ label {
+  color: red;
 }

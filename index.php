@@ -41,11 +41,31 @@ if( isset($_POST['login_submit']) ){
   }
 }
 ?>
-
+	<div id="slide-window">
+  
+		<ol id="slides" start="1">
+		
+		  <li class="slide color-0 alive" style="background-image:url(img/tutorial_1.png);"></li>
+		  
+		  <li class="slide color-1" style="background-image:url(img/tutorial_2.png);"></li>
+		  
+		  <li class="slide color-2" style="background-image:url(img/tutorial_3.png);"></li>
+		
+		</ol>
+	 
+		<span class="arrow" id="left">Back</span>
+		<span class="arrow" id="right">Next</span>
+		<span class="hide" id="hide">立即開始</span>
+		<span class="slide-dot" id="dot1"><img src="img/tutorial_1d.png" width="100%"></span>
+		<span class="slide-dot" id="dot2"><img src="img/tutorial_2d.png" width="100%"></span>
+		<span class="slide-dot" id="dot3"><img src="img/tutorial_3d.png" width="100%"></span>
+    
+	</div>
+    
 <?php if( !has_session() ): ?>
 	<div class="login">
         <div>
-            <div class="logo"><img name="logo" src="img/img_signup_appicon.png" height="180px" width="180px" alt="logo"></div>
+            <div class="logo"><img name="logo" src="img/img_signup_appicon.png" alt="logo"></div>
             <img name="invalid_name" src="img/invalid_name.png" alt="title name">
         </div>
     
@@ -67,10 +87,12 @@ if( isset($_POST['login_submit']) ){
         
               <a href="reg_add.php"><input type="button"  class="button" value="註冊" ></a>
 		</form>
+        
+        <div class="agree" id="agree">你將同意急速家事的<a href="#">服務條款</a>和<a href="#">隱私權政策</a>的條款。</div>
      </div>
       <?php } ?>
       
-      <!------------------登入後跳到task_list----------------------->
+      <!------------------登入後跳到bank----------------------->
       <?php else: 
 	  		header('Location: bank.php');
 	  ?>
@@ -78,29 +100,10 @@ if( isset($_POST['login_submit']) ){
    
 <?php endif ;?>
 
-	<!-----------------tutorial------------------------------------->
-	<div id="slide-window">
-  
-		<ol id="slides" start="1">
-		
-		  <li class="slide color-0 alive" style="background-image:url(img/tutorial_1.png);"></li>
-		  
-		  <li class="slide color-1" style="background-image:url(img/tutorial_2.png);"></li>
-		  
-		  <li class="slide color-2" style="background-image:url(img/tutorial_3.png);"></li>
-		
-		</ol>
-	 
-		<span class="arrow" id="left">Back</span>
-		<span class="arrow" id="right">Next</span>
-		<span class="hide" id="hide">立即開始</span>
-		<span class="slide-dot" id="dot1"><img src="img/tutorial_1d.png" width="100%"></span>
-		<span class="slide-dot" id="dot2"><img src="img/tutorial_2d.png" width="100%"></span>
-		<span class="slide-dot" id="dot3"><img src="img/tutorial_3d.png" width="100%"></span>
-    
-	</div>
+</body>
+</html>
 
-  <script>
+    <script>
 	 $.global = new Object();
 
 		$.global.item = 1;
@@ -128,6 +131,7 @@ if( isset($_POST['login_submit']) ){
 		  $("#hide").hide();
 		  $("#dot2").hide();
 		  $("#dot3").hide();
+		  $("#agree").hide();
 		  });
 
 		function Slide(direction)
@@ -178,12 +182,10 @@ if( isset($_POST['login_submit']) ){
 		  
 		  $(document).ready(function(){
 			$("#hide").click(function(){
-				$("#slide-window").hide();
+				$("#slide-window").fadeOut('slow');
+				$("#agree").show();
 			});
 			
 		});
 
-	 </script>    
-
-</body>
-</html>
+	</script>

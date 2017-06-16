@@ -36,7 +36,7 @@ WHERE  `group` NOT LIKE  '$grp'");
         <ul>
             <li><a href="bank.php">存款</a></li>
             <li><a href="history.php">完成任務</a></li>
-            <li style="border-bottom:#FFFF8C 3px solid">社群</li>
+            <li style="border-bottom:#FFFF8C 3px solid">急速排行</li>
         </ul>
 	</div>
 
