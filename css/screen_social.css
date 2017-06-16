@@ -65,3 +65,7 @@
   opacity: 0.5;
 }
 
+.social .timeline .whiteBar span{
+  position: absolute;
+  top: 25%;
+}

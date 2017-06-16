@@ -44,10 +44,10 @@ $sth = $dbh->query("SELECT * FROM  `task` WHERE  `group` LIKE  '$grp' AND `statu
 									<div class="whiteBar">
 										<img width="80px" height="80px" alt"profilepic">
 										<img width="80px" height="80px" alt"profilepic">
-                    <br/>
-                    家長帳號:<span class="parent"><?php echo $row['parent'] ?></span><br/>
-                    小孩帳號:<span class="child"><?php echo $row['child'] ?></span><br/>
-                    任務名稱:<span class="child"><?php echo $row['title'] ?></span><br/>
+                    <!--<br/>!-->
+                  <!-- 家長帳號:<span class="parent"><?//php echo $row['parent'] ?></span><br/>
+                    小孩帳號:<span class="child"><?//php echo $row['child'] ?></span><br/>--!>
+                   <!-- 任務名稱:--!><span class="child"><?php echo $row['title'] ?></span><br/>
 									</div>
             </li>
             <?php } } while($row) ?>
