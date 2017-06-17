@@ -8,25 +8,19 @@ $bid = $_GET['id'];
 $sth = $dbh->query("SELECT * FROM `task` WHERE id='$bid'");
 $sth->execute();
 $row = $sth->fetch();
-
 $status = $row['status'];
 $taskimg = $row['img'];
-$parent = $row['parent'];
-$child = $row['child'];
 //function changedimg(){
 //	return (strcmp($taskimg,"Taskphoto/incomplete.png") == 0) ? 0 : 1;
 //}
-
-$st = $dbh->prepare(" SELECT * FROM member WHERE `userid` LIKE  '$parent'");
-//$st->bindParam(":id", $_SESSION['id'] );
+$st = $dbh->prepare(" SELECT * FROM member WHERE id=:id ");
+$st->bindParam(":id", $_SESSION['id'] );
 $st->execute();
 $member = $st->fetch();
-
 $matuid = $_SESSION['matchuser'];
-$sth1 = $dbh->query("SELECT * FROM `member` WHERE `userid` LIKE  '$child'");
+$sth1 = $dbh->query("SELECT * FROM `member` WHERE userid='$matuid'");
 $sth1->execute();
 $match = $sth1->fetch();
-
 $error = "";
 $pass = "";
 if( isset($_POST['taskphoto_submit']) ){
@@ -57,9 +51,8 @@ if( isset($_POST['taskphoto_submit']) ){
 		$child = $_SESSION['userid'];
 		$img = $target_path;
 		
-		$sth2 = $dbh->prepare(" UPDATE task SET img=:img, status='1' ,child=:child WHERE id='$bid' ");
+		$sth2 = $dbh->prepare(" UPDATE task SET img=:img, status='1' WHERE id='$bid' ");
 		$sth2->bindParam(":img", $img );
-		$sth2->bindParam(":child", $child );
 		$rtn = $sth2->execute();
 		if($rtn){
 			$pass = "成功上傳";
@@ -71,9 +64,7 @@ if( isset($_POST['taskphoto_submit']) ){
 		}
 	}
 }
-
 if( isset($_POST['finish_submit']) ){
-
 		$dbh = my_pdo();
 		$sth1 = $dbh->prepare("UPDATE task SET status='2' WHERE id='$bid' ");
 		$rtn1 = $sth1->execute();
@@ -111,7 +102,6 @@ if( isset($_POST['finish_submit']) ){
 			var_dump($sth3->errorInfo());
 			var_dump($sth5->errorInfo());
 		}
-
 }
 ?>
 
@@ -120,10 +110,6 @@ if( isset($_POST['finish_submit']) ){
 <title>任務</title>
 <link href="css/sceen.css" rel="stylesheet" type="text/css" />
 <link href="css/screen_task_detail.css" rel="stylesheet" type="text/css" />
-<!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-<link href="jquery-bar-rating/dist/themes/fontawesome-stars.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="jquery-bar-rating/dist/jquery.barrating.min.js"></script>  -->  
 <?php if( has_role('child') ): ?>
 <link href="css/child.css" rel="stylesheet" type="text/css" />
 <?php endif; ?>
@@ -146,7 +132,7 @@ if( isset($_POST['finish_submit']) ){
      </div>
      
      
-  <div class="info">
+    <div class="info">
     <div class="pro">
     	<div class="left">
             <img src="<?php echo $member['profilepic'];?>" alt="profilepic">
@@ -154,12 +140,11 @@ if( isset($_POST['finish_submit']) ){
     	</div>
         <div class="right">
     		<?php	
-                //if( $matuid != "00") :?>
+                if( $matuid != "00") :?>
                 <img src="<?php echo $match['profilepic'];?>" alt="profilepic_matchuser">
 				<div class="name"><?php echo $match['name'];?></div>
-                <?php
-				//endif;
-				//if( $matuid == "00") echo "你還沒配對喔";
+                <?php endif;
+				if( $matuid == "00") echo "你還沒配對喔";
 				?>
 		</div>
 	</div>
@@ -173,16 +158,6 @@ if( isset($_POST['finish_submit']) ){
        		<img src="<?php echo $row['img'] ?>" width="100%" height="auto" />
 		</div>
         
-<!--        <div class="br-wrapper br-theme-fontawesome-stars">
-          <select id="example">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-          ...rating widget...
-        </div>   -->        
                     <?php if( has_role('child') ): ?>
                     <!--<p><a href="child_add.php">上傳照片</a></p>-->
                        <?php if($pass){ ?>
@@ -193,7 +168,7 @@ if( isset($_POST['finish_submit']) ){
                     <?php } ?>
                     
                     <form enctype="multipart/form-data" action="task_detail.php?id=<?php echo $bid ?>" method="post">
-                        <input type="file" accept="image/*" capture="camera" id="file" name="file"/>
+                        <input type="file" accept="image/*" capture="camera" id="file" name="file" />
                         <input type="submit" name="taskphoto_submit" value="上傳"/>
                     </form>
                     
@@ -219,7 +194,8 @@ if( isset($_POST['finish_submit']) ){
                   
                   <?php if( has_role('parent') ): ?>
                   <form action="task_detail.php?id=<?php echo $bid ?>" method="post">
-                  <div class="wrapper">
+                  <?php if( $status ==  1 ): ?>
+                   <div class="wrapper">
                     <input type="radio" id="r1" name="rg1" value="1">
                     <label for="r1">&#9733; </label>
                     <input type="radio" id="r2" name="rg1" value="2">
@@ -232,23 +208,26 @@ if( isset($_POST['finish_submit']) ){
                     <label for="r5">&#9733;</label>
                     </div>
                   
-                  <?php if( $status ==  1 ): ?><input type="submit" name="finish_submit" value="付款"/><?php endif; ?>
+                 <!-- <input type="submit" name="finish_submit" value="付款"/>-->
+				 <?php endif; ?>
                   
                   <div class="btn_bottom" <?php if( $status != 1 ): ?>style="background:#9B9B9B;"<?php endif; ?>>
                       <div class="nothing"></div>
                       <span>
-                      <?php if( $status ==  1 ): ?><a href="bank.php"><?php endif; ?>
-						  <?php
-                          switch($status){
-                              case 0: echo "付款"; break;
-                              case 1: echo "付款"; break;
-                              case 2: echo "已付款"; break;
-                          }
-                          ?>
-                      <?php if( $status ==1 ): ?></a><?php endif; ?>
+                      <?php if( $status ==  1 ): ?>
+					  <input class="givemoney" type="submit" name="finish_submit" value="付款"/>
+					  <?php endif; ?>
+                      
+						<?php 
+						switch($status){
+							case 0:echo "未完成";break;
+							case 2:echo "已付款";break;
+						}
+						
+						?>
                       </span>
                     </div>
-  </form>
+                    </form>
                   <?php endif; ?> <!--if parent-->
                   
       <div style="clear:both"></div>
@@ -257,12 +236,3 @@ if( isset($_POST['finish_submit']) ){
 
 </body>
 </html>
-
-<script type="text/javascript">
-   $(function() {
-      $('#example').barrating({
-        theme: 'fontawesome-stars'
-      });
-	//  $('select').barrating('show');
-   });
-</script>     

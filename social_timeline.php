@@ -1,5 +1,5 @@
 <html>
-<?php
+<?php 
 require_once("func.php");
 $grp = $_GET['group'];
 $dbh = my_pdo();
@@ -27,33 +27,45 @@ $sth = $dbh->query("SELECT * FROM  `task` WHERE  `group` LIKE  '$grp' AND `statu
             <a href="profile.php" class="setting"></a>
             <a href="social.php" class="home"></a>
         </div>
-
+        
       <!--  <ul>
             <li><a href="bank.php">存款</a></li>
             <li><a href="history.php">完成任務</a></li>
             <li style="border-bottom:#FFFF8C 3px solid">社群</li>
         </ul>-->
 	</div>
-
+    
 <div class="social">
 	<div class="timeline">
         <ul>
             <?php do{ $row = $sth->fetch(); if($row){?>
             <li>
-                  <img src="<?php echo $row['img'];?>" alt="taskphoto" width="100%" height="50%"/><br/>
-									<div class="whiteBar">
-										<img width="80px" height="80px" alt"profilepic">
-										<img width="80px" height="80px" alt"profilepic">
-                    <!--<br/>!-->
-                  <!-- 家長帳號:<span class="parent"><?//php echo $row['parent'] ?></span><br/>
-                    小孩帳號:<span class="child"><?//php echo $row['child'] ?></span><br/>--!>
-                   <!-- 任務名稱:--!><span class="child"><?php echo $row['title'] ?></span><br/>
-									</div>
+            
+                    <img src="<?php echo $row['img'];?>" alt="taskphoto" width="100%" height="auto"/><br/>
+             <div class="whiteBar">       
+<!--                    家長帳號:<span class="parent"><?php //echo $row['parent'] ?></span><br/>
+                    小孩帳號:<span class="child"><?php //echo $row['child'] ?></span><br/>-->
+                    <?php 
+					$parentid = $row['parent'];
+					$childid = $row['child'];
+					
+					$sth1 = $dbh->query("SELECT * FROM  `member` WHERE  `userid` LIKE  '$parentid'");
+					$sth1->execute();
+					$parent = $sth1->fetch();
+					
+					$sth2 = $dbh->query("SELECT * FROM  `member` WHERE  `userid` LIKE  '$childid'");
+					$sth2->execute();
+					$child = $sth2->fetch();
+					?>
+                     <img src="<?php echo $parent['profilepic'];?>" alt="parenticon" width="80px" height="80px"/>
+                     <img src="<?php echo $child['profilepic'];?>" alt="childicon" width="80px" height="80px"/>
+                    <span class="child"><?php echo $row['title'] ?></span><br/>
+            </div>
             </li>
-            <?php } } while($row) ?>
-
+            <?php } } while($row) ?>   
+          
           </ul>
-
+     
       </div>
 
 </div>

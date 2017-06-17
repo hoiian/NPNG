@@ -1,15 +1,18 @@
 <html>
-<?php
+<?php 
 require_once("func.php");
 
 $dbh = my_pdo();
 $grp = $_SESSION['group'];
 $sth = $dbh->query("SELECT * FROM  `member` WHERE  `group` LIKE  '$grp' AND  `role` LIKE  'child' ORDER BY  `member`.`score` DESC ");
 
-$sth1 = $dbh->query("SELECT DISTINCT `group`
-FROM  `member`
+$sth1 = $dbh->query("SELECT DISTINCT `group` 
+FROM  `member` 
 WHERE  `group` NOT LIKE  '$grp'");
 
+$sth4 = $dbh->query("SELECT * FROM  `task` WHERE  `group` LIKE  '$rgrp' AND `status` =2 LIMIT 1");
+$sth4->execute();
+$row4 = $sth4->fetch();
 
 ?>
 
@@ -21,7 +24,6 @@ WHERE  `group` NOT LIKE  '$grp'");
 <?php if( has_role('child') ): ?>
 <link href="css/child.css" rel="stylesheet" type="text/css" />
 <?php endif; ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -32,44 +34,59 @@ WHERE  `group` NOT LIKE  '$grp'");
             <p>急速家事</p>
             <a href="profile.php" class="setting"></a>
         </div>
-
+        
         <ul>
             <li><a href="bank.php">存款</a></li>
             <li><a href="history.php">完成任務</a></li>
-            <li style="border-bottom:#FFFF8C 3px solid">急速排行</li>
+            <li style="border-bottom:#FFFF8C 3px solid">社群</li>
         </ul>
 	</div>
-
+    
 <div class="social">
 
 	<a href="social_timeline.php?group=<?php echo $grp ?>">
 	<div class="childrank">
-    <?php echo $grp;?>
+
         <ul>
-					<li>
-						<span>群組的小孩排行榜:</span>
-					</li>
             <?php do{ $row = $sth->fetch(); if($row){?>
             <li>
+               
+                         <?php //echo $row4['img'];?>
             		<img src="<?php echo $row['profilepic'];?>"  width="80px" height="auto" alt="profilepic">
-                    <span class="title"><?php echo $row['name'] ?></span>
-                    /<span class="score"><?php echo $row['score'] ?>分</span><br/>
+                    <!--<span class="title"><?php echo $row['name'] ?></span>/-->
+                    <span class="score">  <?php echo $row['score'] ?>分</span><br/>
             </li>
-            <?php } } while($row) ?>
-
+            <?php } } while($row) ?>   
+          
           </ul>
       </div>
       </a>
+      
       <div class="other">
           <ul>
-            <?php do{ $row1 = $sth1->fetch(); if($row1){?>
+            <?php 
+			do{ $row1 = $sth1->fetch(); 
+			if($row1){
+				$i=1;
+			?>
              <a href="social_timeline.php?group=<?php echo $row1['group'] ?>">
             <li>
-							<div class="otherdiv">
-							<img width="80px" height="80px" alt"profilepic">
-							<!-- add picture here -->
-                    <span class="title"><?php echo $row1['group'] ?></span>
-							</div>
+                            <?php 
+							$othergrp = $row1['group'];
+							$sth3 = $dbh->query("SELECT * FROM  `task` WHERE  `group` LIKE  '$othergrp' AND `status` =2 order by id desc LIMIT 1");
+							$sth3->execute();
+							$row3 = $sth3->fetch();
+							?>
+                            
+                            <img src="<?php echo $row3['img'];?>" height="100%" width="100%" alt="taskphoto">
+							<!-- add picture here
+                            <div class="otherdiv"></div> -->
+                            <div class="bar">
+                            	<div class="nothing"></div>
+                               <img src="img/group_<?php echo $i; $i++;?>.png"width="80px" height="80px" alt"profilepic">
+                                <span class="title"><?php echo $othergrp ?></span>
+                            </div>
+							
             </li>
             </a>
             <?php } } while($row1) ?>
@@ -77,10 +94,8 @@ WHERE  `group` NOT LIKE  '$grp'");
           </ul>
       </div>
 
+
 </div>
-<script>
-	var color = ["#b8f1ed","#b8f1cc","#d9b8f1"];
-  $(".social .other ul li").css("background-color",color[1]);
-</script>
+
 </body>
 </html>
