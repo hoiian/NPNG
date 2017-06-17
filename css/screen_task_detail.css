@@ -56,19 +56,27 @@
 .info span.money{
 }
 
+.givemoney{
+	font-size:45px;
+	background:none;
+	border:0;
+	color:#FFF;
+}
+
 .wrapper {
   display: inline-block;
 }
 .wrapper * {
   float: right;
 }
-input {
+.wrapper input {
   display: none;
 }
-label {
+.wrapper label {
   font-size: 90px;
+  color:#CCC;
 }
 
-input:checked ~ label {
-  color: red;
+.wrapper input:checked ~ label {
+  color:#FC0;
 }
