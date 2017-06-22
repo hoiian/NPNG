@@ -42,6 +42,7 @@ $sth = $dbh->query("SELECT * FROM  `task` WHERE  `group` LIKE  '$grp' AND `statu
             <li>
             
                     <img src="<?php echo $row['img'];?>" alt="taskphoto" width="100%" height="auto"/><br/>
+
              <div class="whiteBar">       
 <!--                    家長帳號:<span class="parent"><?php //echo $row['parent'] ?></span><br/>
                     小孩帳號:<span class="child"><?php //echo $row['child'] ?></span><br/>-->
@@ -59,7 +60,14 @@ $sth = $dbh->query("SELECT * FROM  `task` WHERE  `group` LIKE  '$grp' AND `statu
 					?>
                      <img src="<?php echo $parent['profilepic'];?>" alt="parenticon" width="80px" height="80px"/>
                      <img src="<?php echo $child['profilepic'];?>" alt="childicon" width="80px" height="80px"/>
-                    <span class="child"><?php echo $row['title'] ?></span><br/>
+                    <p class="child"><?php echo $row['title'] ?></p> 
+                    
+                                                            <!-- LikeBtn.com BEGIN -->
+                    <div class="like">
+						<span class="likebtn-wrapper" data-theme="custom" data-btn_size="50" data-f_size="40" data-icon_size="50" data-bg_c="rgba(250,250,250,0)" data-brdr_c="rgba(198,198,198,0)" data-i18n_like="讚" data-identifier="item_1"></span>
+                    </div>
+
+
             </div>
             </li>
             <?php } } while($row) ?>   
@@ -72,3 +80,5 @@ $sth = $dbh->query("SELECT * FROM  `task` WHERE  `group` LIKE  '$grp' AND `statu
 
 </body>
 </html>
+
+<script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
